@@ -28,7 +28,7 @@ Dazza (Daniel) Greenwood, JD Consultant Agreement No. 92207
 
 ## 1.1.	Scope
 
-This Trust Framework applies to the use by MITRE personnel of OpenID 2.0 and OpenID Connect as described in [Section 3](https://github.com/LegalScience/MITRE-DYNAMIC-TRUSTFRAMEWORK/blob/master/MITRE-Trust-Framework-System-Rules-V.1.0.md#3----technology-rules), collectively called MITREid.  This Trust Framework also applies to all non-MITRE users who connect to MITRE systems using the MITRE External Identity Federation.  
+This Trust Framework applies to the use by MITRE personnel of OpenID 2.0 and OpenID Connect as described in [Section 3](#3----technology-rules), collectively called MITREid.  This Trust Framework also applies to all non-MITRE users who connect to MITRE systems using the MITRE External Identity Federation.  
 
 [Commentary: The scope defined in this draft text reflects the current language at https://id.mitre.org/about which reads “MITREid is an OpenID Identity Provider for MITRE employees. Only current MITRE employees have identities provisioned on this identity provider, and identities are not available for registration. This server is a research prototype service provided with best-effort system availability.”]
 
