@@ -10,15 +10,15 @@
 
 
 **Commissioned by and for**: 
-Justin Richer, Lead Computer Scientist
-Social Computing Researcher; Multimedia and Collaboration, G061
-202 Burlington Rd, M/S K320, Bedford, MA 01730
+Justin Richer, Lead Computer Scientist  
+Social Computing Researcher; Multimedia and Collaboration, G061  
+202 Burlington Rd, M/S K320, Bedford, MA 01730  
 781-271-8176; jricher@mitre.org 
 
 **Trust Framework Architect:** 
-Dazza (Daniel) Greenwood, JDConsultant Agreement No. 92207 
-CIVICS.com 650-504-5474 dazza@civics.com
-1 Broadway, 14th Floor, Cambridge, MA 02142
+Dazza (Daniel) Greenwood, JD Consultant Agreement No. 92207   
+[CIVICS.com](http://civics.com/bio)  Contact [Page](http://civics.com/contact)    
+1 Broadway, 14th Floor, Cambridge, MA 02142   
 
 
 **MITREid** **External Identity Federation**
