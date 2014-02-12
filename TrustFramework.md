@@ -415,5 +415,7 @@ Potential criteria when assessing certification for an external Identity Provide
 Determination of which Certification Assessors may be sufficient to determine or recommend certification should follow further discussion and agreement about the potential role and weight certification will receive for purposes of MITRE External Identity Federation. 
 
 ---
-Approved for Public Release: 12-4328. Distribution Unlimited	
-@2012-The MITRE Corporation. All rights reserved	 
+
+Approval for continual collaboration release granted on November 22, 2013, Case Number: 13-3970.
+
+@2014 The MITRE Corporation. All rights reserved	 
