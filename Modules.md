@@ -2,9 +2,9 @@
 
 ## Roles
 
-**IdP**: Identity provider, the service that asserts identities for users. Must use a federated identity protocol. Known as the Authorization Server (AS) in OAuth parlance. 
+**[IdP](https://github.com/mitreid-connect/trust-framework/blob/master/TrustFramework.md#123--identity-provider)**: Identity provider, the service that asserts identities for users. Must use a federated identity protocol. Known as the Authorization Server (AS) in OAuth parlance. 
 
-**RP**: Relying party, the site being logged into. Must use a federated identity protocol. Known as the Client in OAuth parlance.
+**[RP](https://github.com/mitreid-connect/trust-framework/blob/master/TrustFramework.md#126--relying-party)**: Relying party, the site being logged into. Must use a federated identity protocol. Known as the Client in OAuth parlance.
 
 ## MITRE as IdP
 
