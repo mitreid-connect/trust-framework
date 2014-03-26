@@ -1,14 +1,18 @@
-# Name:
-* [Journal of Social Media for Organizations](http://www2.mitre.org/public/jsmo/)
+# Scenario:
+[Journal of Social Media for Organizations](http://www2.mitre.org/public/jsmo/)
 
-# Classification:
+## Classification:
 
 MITRE-as-RP, multiple IdPs (including MITRE)
 
-# Description
-The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electronic journal published by MITRE.
+## Description:
+The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electronic journal published by MITRE. The journal is openly available on MITRE's public server. There is a desire for public comments and discussion threads on the articles published, with participants from the general public. 
 
-# People:
+Desire is to allow anyone to comment but to cut down on spam and to have a chance of tracing back individual commenters for follow-up. 
+
+Identity proofing of commenters is not required, pseudonymity is acceptable. 
+
+## People:
 * Role: Publisher 
  * Parties: MITRE via Jill Drury, Others?
 * Role: Readers/Commenters 
@@ -16,18 +20,26 @@ The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electron
 * Role: Identity Providers (IdP)
  * Parties: MITRE (for MITRE employees and partners), Third party TBD: Google? MIT?
 
-# Interactions:
-* Authors and Readers use Social Login to access MITRE Online Journal for Comments
- - Authors and Readers Authorize MITRE Online Journal (OAuth Client) to their IdP for Login
- - Authors and Readers Review Active and History of Authorized IdP's on Journal Account Screen
- - Authors and Readers Revoke Authorization for MITRE Online Journal to their IdP for Login
-* Other (eg Would this perhaps ease login for Authors for submission, edits, etc)?
+## Interactions:
+* Commenters use Social Login to access MITRE Online Journal for Comments
+ - Commenters Authorize MITRE Online Journal (OpenID Connect Client) to their IdP for Login
+ - Commenters Revoke Authorization for MITRE Online Journal to their IdP for Login
 
-# Data:
-* IdP PII Released to MITRE: TBD (Likely "Basic User Info" for FB and Name/Email for Google, etc ... yes?)
-* Other? (White List, Grey List and Black List Data? Business Reporting? Log Data?)
+## Data:
+* IdP PII Released to MITRE: ("Basic User Info", Name/Email for Google, etc ...)
+* Other? (Business Reporting? Log Data?)
 
-# Lists:
+## Lists:
+
+Whitelist at JSMO RP includes these aspects:
+
+* Simplified login via NASCAR button
+
+Graylist at JSMO RP facilitated by webfinger-style login (user enters an email address)
+
+
+###List contents:
+
 * MITRE IdP to be whitelisted by JSMO RP
 * Some third-party IdPs (Google? MIT?) potentially to be whitelisted by JSMO RP
 * JSMO RP to graylist all other OpenID Connect IdPs
@@ -36,25 +48,27 @@ The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electron
 
 # Systems:
 ## Technology Systems:
-* MITRE Web Site Platform? Network?
-* MITRE Online Journal
-* MITREid (https://id.mitre.org/about)
+* [MITRE Web Site Platform](http://www.mitre.org/)
+* [Journal of Social Media for Organizations (JSMO)](http://www2.mitre.org/public/jsmo/)
+* [MITREid](https://id.mitre.org/about)
 * Third Party IdPs
 * Other?
 
 ## Business Systems:
-* MITRE Publishing Unit?
+* MITRE Publishing Unit (Collaboration Center of Excellence?)
 * Other?
 
 ## Legal Systems:
-* MITRE Partnership Network?
-* MITRE Education Partnership?
+* MITRE Partnership Network
 * MITRE Boilerplate Overlay? (eg Terms and Conditions, Privacy Policy, EULA?)
 * Other?
 
-Motivations:
-* Business Drivers: TBD (Enable/increase comments?  Reduce barriers to comments?)
-* Business Inhibitors:  TBD (Example: A relevant inhibitor might be hesitation on the part of the team that runs MITRE's www site around turning this kind of functionality on)
-* Goals: TBD (Drive SEO to articles? Increase readership or subscription or cites?)
-
-Comments: I think we have an opportunity to help out here, or at least study what the hesitances are.
+##Motivations:
+* Business Drivers: 
+ * Enable/increase comments
+ * Reduce barriers to comments
+* Business Inhibitors:
+ * Security considerations of allowing remote login to MITRE's www site
+ * Ability to enable social login on one section of the site without affecting other sections
+* Goals:
+ * TBD
