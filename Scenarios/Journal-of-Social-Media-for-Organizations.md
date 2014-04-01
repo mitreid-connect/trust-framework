@@ -24,6 +24,10 @@ Identity proofing of commenters is not required, pseudonymity is acceptable.
 * Commenters use Social Login to access MITRE Online Journal for Comments
  - Commenters Authorize MITRE Online Journal (OpenID Connect Client) to their IdP for Login
  - Commenters Revoke Authorization for MITRE Online Journal to their IdP for Login
+ 
+* Relationships between Roles
+ - Journal as User Authority for accounts and MITRE IdP
+ - Other
 
 ## Data:
 * IdP PII Released to MITRE: ("Basic User Info", Name/Email for Google, etc ...)
