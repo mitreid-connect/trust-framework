@@ -3,10 +3,12 @@
 
 ## Classification:
 
-MITRE-as-RP, multiple IdPs (including MITRE)
+MITRE-facilitate RP (possibly on remote host)
+
+MITRE as IdP (for MITRE people), other third party IdPs (for other people)
 
 ## Description:
-The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electronic journal published by MITRE. The journal is openly available on MITRE's public server. There is a desire for public comments and discussion threads on the articles published, with participants from the general public. 
+The Journal of Social Media for Organizations (JSMO) is a peer-reviewed electronic journal published by MITRE. The journal is openly available a public web server (possibly run by MITRE, possibly run by a third party). There is a desire for public comments and discussion threads on the articles published, with participants from the general public. 
 
 Desire is to allow anyone to comment but to cut down on spam and to have a chance of tracing back individual commenters for follow-up. 
 
@@ -42,7 +44,8 @@ Graylist at JSMO RP facilitated by webfinger-style login (user enters an email a
 
 * MITRE IdP to be whitelisted by JSMO RP
 * Some third-party IdPs (Google? MIT?) potentially to be whitelisted by JSMO RP
-* JSMO RP to graylist all other OpenID Connect IdPs
+* All other OpenID Connect IdPs to be graylisted by JSMO RP
+
 * JSMO RP to be whitelisted by MITRE IdP
 * JSMO RP to be graylisted by third-party IdPs
 
