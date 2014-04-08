@@ -175,15 +175,17 @@ Social Computing Researcher; Multimedia and Collaboration, G061
 ### 3.1.1.	Technical Use Cases
 The following use cases are supported under this Trust Framework: [TBD]
 
-[Commentary: For so long as MITREid is an early-stage research prototype, it is premature to focus on detailed documentation of supported use cases.  However, this draft Trust Framework anticipates a future state at which external and internal parties will seek to implement and interoperate with MITRE External Identity Federation services and the important role of this document to facilitate and regulate adoption.  To that end, the types of technical use cases that would be relevant and constructive to detail in the future are noted below.  
-•	MITREid User Logs Into Grey Listed Relying Party
-•	MITREid User Logs Into White Listed Relying Party
-•	MITREid User Logs Into Black Listed Relying Party
-•	Non-MITRE User Logs Into MITRE External Identity Federation Enabled Site
-•	Non-MITRE CAC User Logs Into MITRE External Identity Federation Enabled Site
-•	MITRE Relying Party Site Implements MITRE External Identity Federation Access
-•	Non-MITRE Identity Provider Added to MITRE External Identity Federation White List
-•	Non-MITRE Relying Party Site Accepts MITREid User Login]
+[Commentary: For so long as MITREid is an early-stage research prototype, it is premature to focus on detailed documentation of supported use cases.  However, this draft Trust Framework anticipates a future state at which external and internal parties will seek to implement and interoperate with MITRE External Identity Federation services and the important role of this document to facilitate and regulate adoption.  To that end, the types of technical use cases that would be relevant and constructive to detail in the future are noted below.
+
+
+- MITREid User Logs Into Grey Listed Relying Party
+- MITREid User Logs Into White Listed Relying Party
+- MITREid User Logs Into Black Listed Relying Party
+- Non-MITRE User Logs Into MITRE External Identity Federation Enabled Site
+- Non-MITRE CAC User Logs Into MITRE External Identity Federation Enabled Site
+- MITRE Relying Party Site Implements MITRE External Identity Federation Access
+- Non-MITRE Identity Provider Added to MITRE External Identity Federation White List
+- Non-MITRE Relying Party Site Accepts MITREid User Login]
 
 ### 3.1.2.	Technical Architecture
 
@@ -201,14 +203,16 @@ The following use cases are supported under this Trust Framework: [TBD]
 
 ##### 3.2.1.2.1.	All Identity Providers MUST support the OpenID 2.0 Attribute Exchange 1.0 protocol as defined in http://openid.net/specs/openid-attribute-exchange-1_0.html
 
-##### 3.2.1.2.2.	Identity Providers MUST make attributes available using the following schema URLs from axschema.org:
-•	Base URL: http://axschema.org/ 
-•	Preferred username: http://axschema.org/namePerson/friendly
-•	First name: http://axschema.org/namePerson/first
-•	Last name: http://axschema.org/namePerson/last
-•	Full display name: http://axschema.org/namePerson
-•	Business email address: http://axschema.org/contact/email 
-•	Business phone: http://axschema.org/contact/phone/business 
+##### 3.2.1.2.2.	Identity Providers MUST make attributes available using the following schema URLs from axschema.org
+
+
+- Base URL: http://axschema.org/
+- Preferred username: http://axschema.org/namePerson/friendly
+- First name: http://axschema.org/namePerson/first
+- Last name: http://axschema.org/namePerson/last
+- Full display name: http://axschema.org/namePerson
+- Business email address: http://axschema.org/contact/email
+- Business phone: http://axschema.org/contact/phone/business 
 
 ### 3.2.2.	OpenID Connect
 
@@ -219,27 +223,33 @@ All Identity Providers and Relying Parties MUST support the OpenID Connect final
 
 #### 3.2.2.2.	The MITRE OpenID Connect server supports the final version of the OpenID Connect protocol as defined by http://openid.net/connect Protocol Profile.
 The MITRE OpenID Connect server will support the following flows and options
-•	Basic client profile (code flow) as defined by http://openid.net/specs/openid-connect-basic-1_0.html including:
--	Authorization Code flow
--	UserInfo Endpoint with "openid" schema
--	Asymmetrically signed id_token (with RSA)
-•	Additionally, the MITRE server supports the following optional components of OpenID Connect:
--	Asymmetrically signed Request Objects (via RSA)
--	Server keys published via JWK and X509
--	Access tokens signed with RSA by server
--	Dynamic client registration
--	Server discovery
 
-3.2.2.3.	Claims
-The following claims are supported from the UserInfo Endpoint with semantics defined in http://openid.net/specs/openid-connect-messages-1_0.html 
-•	user_id, guaranteed unique and stable per user
-•	name
-•	given_name
-•	family_name
-•	preferred_username
-•	email
-•	email_verified
-•	phone_number
+
+- Basic client profile (code flow) as defined by http://openid.net/specs/openid-connect-basic-1_0.html including:
+	- Authorization Code flow
+	- UserInfo Endpoint with "openid" schema
+	- Asymmetrically signed id_token (with RSA)
+
+
+- Additionally, the MITRE server supports the following optional components of OpenID Connect:
+	- Asymmetrically signed Request Objects (via RSA)
+	- Server keys published via JWK and X509
+	- Access tokens signed with RSA by server
+	- Dynamic client registration
+	- Server discovery
+
+#### 3.2.2.3.	Claims
+The following claims are supported from the UserInfo Endpoint with semantics defined in http://openid.net/specs/openid-connect-messages-1_0.html
+
+
+- user_id, guaranteed unique and stable per user
+- name
+- given_name
+- family_name
+- preferred_username
+- email
+- email_verified
+- phone_number
 
 ## 3.3.	White, Black and Grey Lists
 The technical configuration accompanying implementation of White and Black list determinations made in accordance with this Trust Framework System Rules are noted in this section. 
@@ -285,19 +295,22 @@ All public keys MUST be discoverable as per the JWT Web Key (JWK) specification.
 
 ### 3.6.1.	Identity Provider Event Logging
 An Identity Provider MUST log the following events:
-•	User approves a site
-•	User logs in to an Identity Provider
-•	User uses an Identity Provider to log into a Relying Party
-•	User denies log in to a Relying Party
-•	User revokes access to a Relying Party
+
+- User approves a site
+- User logs in to an Identity Provider
+- User uses an Identity Provider to log into a Relying Party
+- User denies log in to a Relying Party
+- User revokes access to a Relying Party
 
 ### 3.6.2.	The System Operator shall maintain records of the Identity Provider log files related to MITRE Users and required under Section 3.6.1 in accordance with MITRE Records Management Procedure IM 4.3.1.1.
 
 ### 3.6.3.	White Listed Relying Party Event Logging
 A White Listed Relying Party MUST log the following events:
-•	User selects an Identity Provider to login to a Relying Party
-•	User uses an Identity Provider to login to a Relying Party
-•	User denies the authentication transaction
+
+
+- User selects an Identity Provider to login to a Relying Party
+- User uses an Identity Provider to login to a Relying Party
+- User denies the authentication transaction
 
 
 # APPENDICES and ADDENDA
@@ -306,17 +319,18 @@ A White Listed Relying Party MUST log the following events:
 
 Glossary
 
-•	Derived Federated Credential: A credential derived from a Primary Credential identifying the User of a Primary Credential for purpose of federated login to a Relying Party system. 
-•	Identity Provider: An Identity Provider is the role of a Party responsible for issuing Primary Credentials and/or Derived Federated Identity Credentials for Users. 
-•	MITRE External Identity Federation: The MITREid Identity Provider and MITRE Relying Party sites as well as both Identity Providers and Relying Parties that are external to MITRE and issue or accept Derived Federated Credentials used or accepted by MITRE.
-•	MITREid: MITREid is the MITRE Party conducting the role of Identity Provider responsible for issuing OpenID 2.0 and/or OpenID Connect Derived Federated Credentials for Users who are MITRE personnel, in accordance with the User Authority for MITRE.  
-•	Onboard: A process by which a Party joins a Federation and becomes bound by that Federation’s system rules and/or Trust Framework, if applicable.
-•	Party: A legal entity that conducts a Role in accord with these Trust Framework System Rules.
-•	Primary Credential: Digital information issued by a User Authority to a User that authoritatively binds identity attributes about that User to a means of authentication possessed and controlled by that User.
-Relying Party: A Relying Party is the role of a Party who is a service provider that accepts or has accepted a Credential issued by an Identity Provider for the purpose of authenticating a User.
-•	System Operator: The System Operator is the role of a Party responsible for implementing and administering an Identity Federation. 
-•	User: A User is a Party that is a single human being who authenticates to any system covered by this Trust Framework, either using a Primary or Derived Federated Credential. 
-•	User Authority: A User Authority is the role of a Party responsible for the issuance of Primary Credentials to Users.  
+
+- **Derived Federated Credential:** A credential derived from a Primary Credential identifying the User of a Primary Credential for purpose of federated login to a Relying Party system.
+- **Identity Provider:** An Identity Provider is the role of a Party responsible for issuing Primary Credentials and/or Derived Federated Identity Credentials for Users.
+- **MITRE External Identity Federation:** The MITREid Identity Provider and MITRE Relying Party sites as well as both Identity Providers and Relying Parties that are external to MITRE and issue or accept Derived Federated Credentials used or accepted by MITRE.
+- **MITREid:** MITREid is the MITRE Party conducting the role of Identity Provider responsible for issuing OpenID 2.0 and/or OpenID Connect Derived Federated Credentials for Users who are MITRE personnel, in accordance with the User Authority for MITRE.
+- **Onboard:** A process by which a Party joins a Federation and becomes bound by that Federation’s system rules and/or Trust Framework, if applicable.
+- **Party:** A legal entity that conducts a Role in accord with these Trust Framework System Rules.
+- **Primary Credential:** Digital information issued by a User Authority to a User that authoritatively binds identity attributes about that User to a means of authentication possessed and controlled by that User.
+- **Relying Party:** A Relying Party is the role of a Party who is a service provider that accepts or has accepted a Credential issued by an Identity Provider for the purpose of authenticating a User.
+- **System Operator:** The System Operator is the role of a Party responsible for implementing and administering an Identity Federation.
+- **User:** A User is a Party that is a single human being who authenticates to any system covered by this Trust Framework, either using a Primary or Derived Federated Credential.
+- **User Authority:** A User Authority is the role of a Party responsible for the issuance of Primary Credentials to Users.  
 
  
 ## APPENDIX 2: LINKS TO REFERENCED TECHNICAL STANDARDS, SPECIFICATION AND PROTOCOLS
