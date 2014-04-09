@@ -3,7 +3,7 @@
 
 ## Classification:
 
-MITRE-hosted RP
+MITRE-facilitate RP (possibly on remote host)
 
 MITRE as IdP (for MITRE people), other third party IdPs (for other people)
 
@@ -55,7 +55,7 @@ Graylist at JSMO RP facilitated by webfinger-style login (user enters an email a
 
 # Systems:
 ## Technology Systems:
-* [MITRE Web Site Platform](http://www.mitre.org/)
+* Hosting platform with CMS capability
 * [Journal of Social Media for Organizations (JSMO)](http://www2.mitre.org/public/jsmo/)
 * [MITREid](https://id.mitre.org/about)
 * Third Party IdPs
@@ -74,6 +74,7 @@ Graylist at JSMO RP facilitated by webfinger-style login (user enters an email a
 * Business Drivers: 
  * Enable/increase comments
  * Reduce barriers to comments
+ * Allow for longer-term collaboration and conversation between commenters and authors
 * Business Inhibitors:
  * Security considerations of allowing remote login to MITRE's www site
  * Ability to enable social login on one section of the site without affecting other sections
