@@ -16,6 +16,8 @@ The Handshake site allows MITRE users to invite non-MITRE users to participate o
 * Role: Identity Providers (IdP)
  * Parties: MIT IdP
 
+User Authority: MITRE employees invite particular email addresses, MIT binds that address to a particular credential account.
+
 ## Interactions:
 * Inviter invites invitee
  * MITRE user invites external participant by entering email address in Handshake form. Handshake recognizes `@mit.edu` email address and sends custom invitation form.
