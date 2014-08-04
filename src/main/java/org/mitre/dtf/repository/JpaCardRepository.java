@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Repository layer for translating between POJOs and database objects.
+ * Repository layer for translating Card POJOs to and from database.
  * 
  * @author wkim
  *

@@ -1,5 +1,7 @@
 package org.mitre.dtf.model;
 
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,9 +22,11 @@ public class Card {
 	private long id;
 	private String title;
 	private String description;
+	private Set<Tag> dependsTags;
+	private Set<Tag> providesTags;
 	
 	/**
-	 * Default empty constructor.
+	 * Default empty parameter constructor.
 	 */
 	public Card() {
 		// left blank intentionally
@@ -78,6 +82,10 @@ public class Card {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	
+	
 	
 	@Override
 	public String toString() {
