@@ -16,6 +16,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.google.common.collect.Sets;
+
 @Entity
 @Table(name = "card")
 @NamedQueries({
@@ -39,6 +41,9 @@ public class Card {
 	public Card(String title, String description) {
 		this.title = title;
 		this.description = description;
+		
+		this.dependsTags = Sets.newHashSet();
+		this.providesTags = Sets.newHashSet();
 	}
 
 	/**
