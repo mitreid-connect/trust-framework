@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/config/application-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/application-context.xml")
 public class JpaCardRepositoryTest {
 
 	@Autowired
