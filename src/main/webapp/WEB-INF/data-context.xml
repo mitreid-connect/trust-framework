@@ -36,6 +36,8 @@
 		<!-- The following files are for safely bootstrapping users and clients into the database -->
 		<jdbc:script location="classpath:/db/cards.sql"/>
 		<jdbc:script location="classpath:/db/tags.sql"/>
+		<jdbc:script location="classpath:/db/depends.sql"/>
+		<jdbc:script location="classpath:/db/provides.sql"/>
 	</jdbc:initialize-database>
 	
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">

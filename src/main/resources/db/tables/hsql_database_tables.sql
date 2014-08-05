@@ -14,15 +14,15 @@ CREATE TABLE IF NOT EXISTS tag (
 );
 
 CREATE TABLE IF NOT EXISTS depends (
-	cardID BIGINT,
-	tagID BIGINT,
-	FOREIGN KEY (cardID) REFERENCES card(id),
-	FOREIGN KEY (tagID) REFERENCES tag(id)
+	cardId BIGINT,
+	tagId BIGINT,
+	FOREIGN KEY (cardId) REFERENCES card(id),
+	FOREIGN KEY (tagId) REFERENCES tag(id)
 );
 
 CREATE TABLE IF NOT EXISTS provides (
-	cardID BIGINT,
-	tagID BIGINT,
-	FOREIGN KEY (cardID) REFERENCES card(id),
-	FOREIGN KEY (tagID) REFERENCES tag(id)
+	cardId BIGINT,
+	tagId BIGINT,
+	FOREIGN KEY (cardId) REFERENCES card(id),
+	FOREIGN KEY (tagId) REFERENCES tag(id)
 );
