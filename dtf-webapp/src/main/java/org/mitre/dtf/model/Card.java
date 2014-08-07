@@ -1,5 +1,6 @@
 package org.mitre.dtf.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -16,10 +17,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 @Entity
-@Table(name = "card")
+@Table(name = "Card")
 @NamedQueries({
 	@NamedQuery(name = "Card.findAll", query = "select c from Card c ORDER BY c.id")
 })
@@ -28,7 +30,7 @@ public class Card {
 	private long id;
 	private String title;
 	private String description;
-	private Set<Tag> dependsTags;
+	private List<Dependency> dependencies;
 	private Set<Tag> providesTags;
 
 	/**
@@ -42,7 +44,7 @@ public class Card {
 		this.title = title;
 		this.description = description;
 		
-		this.dependsTags = Sets.newHashSet();
+		this.dependencies = Lists.newArrayList();
 		this.providesTags = Sets.newHashSet();
 	}
 
@@ -96,19 +98,19 @@ public class Card {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "depends", 
+	@JoinTable(name = "CardDependencies", 
 			joinColumns = @JoinColumn(name = "cardId", referencedColumnName = "id"), 
-			inverseJoinColumns = @JoinColumn(name = "tagId", referencedColumnName = "id"))
-	public Set<Tag> getDependsTags() {
-		return dependsTags;
+			inverseJoinColumns = @JoinColumn(name = "dependencyId", referencedColumnName = "id"))
+	public List<Dependency> getDependencies () {
+		return dependencies;
 	}
 
-	public void setDependsTags(Set<Tag> tags) {
-		this.dependsTags = tags;
+	public void setDependencies(List<Dependency> dependencies) {
+		this.dependencies = dependencies;
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "provides", 
+	@JoinTable(name = "Provides", 
 		joinColumns = @JoinColumn(name = "cardId", referencedColumnName = "id"), 
 		inverseJoinColumns = @JoinColumn(name = "tagId", referencedColumnName = "id"))
 	public Set<Tag> getProvidesTags() {
@@ -119,12 +121,15 @@ public class Card {
 		this.providesTags = tags;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((dependsTags == null) ? 0 : dependsTags.hashCode());
+				+ ((dependencies == null) ? 0 : dependencies.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -134,6 +139,9 @@ public class Card {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -143,10 +151,10 @@ public class Card {
 		if (getClass() != obj.getClass())
 			return false;
 		Card other = (Card) obj;
-		if (dependsTags == null) {
-			if (other.dependsTags != null)
+		if (dependencies == null) {
+			if (other.dependencies != null)
 				return false;
-		} else if (!dependsTags.equals(other.dependsTags))
+		} else if (!dependencies.equals(other.dependencies))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -168,11 +176,15 @@ public class Card {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", title=" + title + ", description="
-				+ description + ", dependsTags=" + dependsTags
+				+ description + ", dependencies=" + dependencies
 				+ ", providesTags=" + providesTags + "]";
 	}
+
 
 }

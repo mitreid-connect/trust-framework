@@ -34,10 +34,12 @@
 	<jdbc:initialize-database data-source="dataSource">
 		<jdbc:script location="classpath:/db/tables/hsql_database_tables.sql"/>
 		<!-- The following files are for safely bootstrapping users and clients into the database -->
-		<jdbc:script location="classpath:/db/cards.sql"/>
-		<jdbc:script location="classpath:/db/tags.sql"/>
-		<jdbc:script location="classpath:/db/depends.sql"/>
-		<jdbc:script location="classpath:/db/provides.sql"/>
+		<jdbc:script location="classpath:/db/Card.sql"/>
+		<jdbc:script location="classpath:/db/Dependency.sql"/>
+		<jdbc:script location="classpath:/db/Tag.sql"/>
+		<jdbc:script location="classpath:/db/CardDependencies.sql"/>
+		<jdbc:script location="classpath:/db/DependencyTags.sql"/>
+		<jdbc:script location="classpath:/db/Provides.sql"/>
 	</jdbc:initialize-database>
 	
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">

@@ -1,2 +1,2 @@
 INSERT INTO tag (name) VALUES
-('OP');
+('OpenID Provider');

@@ -2,22 +2,25 @@ package org.mitre.dtf.repository;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mitre.dtf.model.Card;
+import org.mitre.dtf.model.Dependency;
 import org.mitre.dtf.model.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
  * Unit testing of JpaCardRepository class. These tests makes some assumptions
- * about the initial state of the db as scripted in the cards.sql resource file.
+ * about the initial state of the db as scripted in the Card.sql resource file.
  * 
  * @author wkim
  *
@@ -37,18 +40,28 @@ public class JpaCardRepositoryTest {
 	private Card card1;
 	private Card card2;
 	
+	private Dependency dependency1;
+	private Dependency dependency2;
+	
 	private Tag tag1;
 	
 	@Before
 	public void setUp() {
-		tag1 = new Tag("OP");
+		tag1 = new Tag("OpenID Provider");
 		tag1.setId(1L);
 		
-		card1 = new Card("OpenID Connect", "OpenID Connect 1.0 is a simple identity layer on top of the OAuth 2.0 protocol.");
-		card1.setId(1L);
-		card1.setDependsTags(Sets.newHashSet(tag1));
+		dependency1 = new Dependency("OpenID Provider #1");
+		dependency1.setId(1L);
+		dependency1.setTags(Sets.newHashSet(tag1));
+		dependency2 = new Dependency("OpenID Provider #2");
+		dependency2.setId(2L);
+		dependency2.setTags(Sets.newHashSet(tag1));
 		
-		card2 = new Card("OpenID Provider", "OAuth 2.0 Authorization Server that is capable of Authenticating the End-User and providing Claims to a Relying Party about the Authentication event and the End-User.");
+		card1 = new Card("MIT/MITRE Scenario", "The Handshake site allows MITRE users to invite non-MITRE users to participate on the Handshake site...");
+		card1.setId(1L);
+		card1.setDependencies(Lists.newArrayList(dependency1, dependency2));
+		
+		card2 = new Card("id.mitre.org", "MITREid is an OpenID Identity Provider for MITRE employees...");
 		card2.setId(2L);
 		card2.setProvidesTags(Sets.newHashSet(tag1));
 	}
@@ -78,19 +91,20 @@ public class JpaCardRepositoryTest {
 	}
 	
 	@Test
-	public void testDepends() {
+	public void testDependencies() {
 		
-		Card c = cardRepository.getById(1); // should be the goldfish card with one depends tag
-		Set<Tag> tags = c.getDependsTags();
+		Card c = cardRepository.getById(1);
+		List<Dependency> dependencies = c.getDependencies();
 		
-		assertTrue(tags.size() == 1);
-		assertTrue(tags.contains(tag1));
+		assertTrue(dependencies.size() == 2);
+		assertTrue(dependencies.contains(dependency1));
+		assertTrue(dependencies.contains(dependency2));
 	}
 	
 	@Test
 	public void testProvides() {
 		
-		Card c = cardRepository.getById(2); // should be the fish flakes card with one depends tag
+		Card c = cardRepository.getById(2);
 		Set<Tag> tags = c.getProvidesTags();
 		
 		assertTrue(tags.size() == 1);

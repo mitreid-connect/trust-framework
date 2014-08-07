@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tag")
+@Table(name = "Tag")
 @NamedQueries({
 	@NamedQuery(name = "Tag.findAll", query = "select t from Tag t ORDER BY t.id")
 })
