@@ -14,30 +14,23 @@ Licensed under the Apache License, Version 2.0 (the "License");
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<!-- Scan for components -->
 	<context:component-scan annotation-config="true"
-		base-package="org.mitre" />
-
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<mvc:annotation-driven
-		ignoreDefaultModelOnRedirect="true" />
-
-	<mvc:default-servlet-handler />
-
-	<!-- Import the data context -->
-	<import resource="data-context.xml" />
-	<import resource="jpa-config.xml" />
+		base-package="org.mitre.dtf.web" />
 
 	<!-- View configuration -->
-	<import resource="servlet-context.xml" />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<bean class ="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
 
 	<!-- End view configuration -->
-
-	<!-- import application-local configuration information (such as bean definitions) -->
-	<import resource="local-config.xml" />
 
 </beans>
