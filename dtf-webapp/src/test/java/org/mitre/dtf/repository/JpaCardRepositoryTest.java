@@ -19,6 +19,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
+ * WARNING: This unit test currently uses actual application context for testing.
+ * This may have undesirable results on your persistent data store.
+ * 
  * Unit testing of JpaCardRepository class. These tests makes some assumptions
  * about the initial state of the db as scripted in the Card.sql resource file.
  * 
@@ -52,16 +55,18 @@ public class JpaCardRepositoryTest {
 		
 		dependency1 = new Dependency("OpenID Provider #1");
 		dependency1.setId(1L);
+		dependency1.setCard(card1);
 		dependency1.setTags(Sets.newHashSet(tag1));
 		dependency2 = new Dependency("OpenID Provider #2");
 		dependency2.setId(2L);
+		dependency2.setCard(card1);
 		dependency2.setTags(Sets.newHashSet(tag1));
 		
-		card1 = new Card("MIT/MITRE Scenario", "The Handshake site allows MITRE users to invite non-MITRE users to participate on the Handshake site...");
+		card1 = new Card("MIT/MITRE Scenario", "The Handshake site allows MITRE users to invite non-MITRE users to participate on the Handshake site.");
 		card1.setId(1L);
 		card1.setDependencies(Lists.newArrayList(dependency1, dependency2));
 		
-		card2 = new Card("id.mitre.org", "MITREid is an OpenID Identity Provider for MITRE employees...");
+		card2 = new Card("id.mitre.org", "MITREid is an OpenID Identity Provider for MITRE employees.");
 		card2.setId(2L);
 		card2.setProvidesTags(Sets.newHashSet(tag1));
 	}

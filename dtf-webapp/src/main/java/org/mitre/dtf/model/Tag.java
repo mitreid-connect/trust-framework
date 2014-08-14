@@ -17,8 +17,8 @@ import javax.persistence.Table;
 })
 public class Tag {
 
-	private long id;
-	private String name;
+	private long id; // unique identifier
+	private String name; // human-readable name
 	
 	/**
 	 * Default empty parameter constructor.

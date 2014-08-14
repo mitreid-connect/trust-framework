@@ -36,7 +36,6 @@
 		<jdbc:script location="classpath:/db/Card.sql"/>
 		<jdbc:script location="classpath:/db/Dependency.sql"/>
 		<jdbc:script location="classpath:/db/Tag.sql"/>
-		<jdbc:script location="classpath:/db/CardDependencies.sql"/>
 		<jdbc:script location="classpath:/db/DependencyTags.sql"/>
 		<jdbc:script location="classpath:/db/Provides.sql"/>
 	</jdbc:initialize-database>

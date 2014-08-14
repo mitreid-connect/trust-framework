@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,9 +25,10 @@ import javax.persistence.Table;
 })
 public class Dependency {
 
-	private long id;
-	private String description;
-	private Set<Tag> tags;
+	private long id; // unique identifier
+	private Card card; // the card this dependency belongs to
+	private String description; // human-readable description to be displayed
+	private Set<Tag> tags; // tags that are required by this dependency
 	
 	/**
 	 * Default empty parameter constructor.
@@ -56,6 +58,22 @@ public class Dependency {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the card
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cardId", referencedColumnName = "id")
+	public Card getCard() {
+		return card;
+	}
+
+	/**
+	 * @param card the card to set
+	 */
+	public void setCard(Card card) {
+		this.card = card;
 	}
 
 	/**

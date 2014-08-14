@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.google.common.collect.Lists;
@@ -27,11 +28,11 @@ import com.google.common.collect.Sets;
 })
 public class Card {
 
-	private long id;
-	private String title;
-	private String description;
-	private List<Dependency> dependencies;
-	private Set<Tag> providesTags;
+	private long id; // unique identifier
+	private String title; // human-readable title
+	private String description; // human-readable description
+	private List<Dependency> dependencies; // list of dependency slots
+	private Set<Tag> providesTags; // set of tags this card provides
 
 	/**
 	 * Default empty parameter constructor.
@@ -97,11 +98,8 @@ public class Card {
 		this.description = description;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "CardDependencies", 
-			joinColumns = @JoinColumn(name = "cardId", referencedColumnName = "id"), 
-			inverseJoinColumns = @JoinColumn(name = "dependencyId", referencedColumnName = "id"))
-	public List<Dependency> getDependencies () {
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card")
+	public List<Dependency> getDependencies() {
 		return dependencies;
 	}
 
