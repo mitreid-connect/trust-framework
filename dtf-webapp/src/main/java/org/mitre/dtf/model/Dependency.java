@@ -17,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Table(name = "Dependency")
@@ -65,6 +67,7 @@ public class Dependency {
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cardId", referencedColumnName = "id")
+	@JsonBackReference
 	public Card getCard() {
 		return card;
 	}

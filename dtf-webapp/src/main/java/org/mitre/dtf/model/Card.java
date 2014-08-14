@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -99,6 +100,7 @@ public class Card {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card")
+	@JsonManagedReference
 	public List<Dependency> getDependencies() {
 		return dependencies;
 	}
