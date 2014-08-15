@@ -16,7 +16,7 @@ public class CardController {
 	@Autowired
 	JpaCardRepository repository;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/card", method = RequestMethod.GET, produces = "application/json")
 	public Set<Card> getAll() {
 		
 		return repository.getAll();
