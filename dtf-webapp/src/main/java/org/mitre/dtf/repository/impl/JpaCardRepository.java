@@ -1,4 +1,4 @@
-package org.mitre.dtf.repository;
+package org.mitre.dtf.repository.impl;
 
 import static org.mitre.util.jpa.JpaUtil.saveOrUpdate;
 
@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.mitre.dtf.model.Card;
+import org.mitre.dtf.repository.CardRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,11 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Repository("jpaCardRepository")
-public class JpaCardRepository {
+public class JpaCardRepository implements CardRepository {
 	
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Override
 	@Transactional
 	public Set<Card> getAll() {
 		
@@ -33,11 +35,13 @@ public class JpaCardRepository {
 		return new LinkedHashSet<Card>(query.getResultList());
 	}
 	
+	@Override
 	@Transactional
 	public Card getById(long id) {
 		return em.find(Card.class, id);
 	}
 	
+	@Override
 	@Transactional
 	public void remove(Card card) {
 		Card found = em.find(Card.class, card.getId());
@@ -49,6 +53,7 @@ public class JpaCardRepository {
 		}
 	}
 	
+	@Override
 	@Transactional
 	public Card save(Card card) {
 		return saveOrUpdate(card.getId(), em, card);

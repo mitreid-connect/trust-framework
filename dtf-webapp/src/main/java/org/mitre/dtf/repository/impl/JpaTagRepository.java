@@ -1,4 +1,4 @@
-package org.mitre.dtf.repository;
+package org.mitre.dtf.repository.impl;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

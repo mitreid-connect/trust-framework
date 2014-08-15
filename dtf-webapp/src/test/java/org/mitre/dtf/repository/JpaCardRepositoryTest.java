@@ -1,6 +1,7 @@
 package org.mitre.dtf.repository;
 
 import static org.junit.Assert.*;
+import static org.mitre.dtf.test.TestData.*;
 
 import java.util.List;
 import java.util.Set;
@@ -11,13 +12,10 @@ import org.junit.runner.RunWith;
 import org.mitre.dtf.model.Card;
 import org.mitre.dtf.model.Dependency;
 import org.mitre.dtf.model.Tag;
+import org.mitre.dtf.test.TestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 /**
  * WARNING: This unit test currently uses actual application context for testing.
  * This may have undesirable results on your persistent data store.
@@ -33,42 +31,13 @@ import com.google.common.collect.Sets;
 public class JpaCardRepositoryTest {
 
 	@Autowired
-	JpaCardRepository cardRepository;
+	CardRepository cardRepository;
 
-	/*
-	 * See src/resources/db/*.sql files for expected initial data.
-	 */
-	
-	// test data
-	private Card card1;
-	private Card card2;
-	
-	private Dependency dependency1;
-	private Dependency dependency2;
-	
-	private Tag tag1;
+	// get testing data from TestData.java
 	
 	@Before
 	public void setUp() {
-		tag1 = new Tag("OpenID Provider");
-		tag1.setId(1L);
-		
-		dependency1 = new Dependency("OpenID Provider #1");
-		dependency1.setId(1L);
-		dependency1.setCard(card1);
-		dependency1.setTags(Sets.newHashSet(tag1));
-		dependency2 = new Dependency("OpenID Provider #2");
-		dependency2.setId(2L);
-		dependency2.setCard(card1);
-		dependency2.setTags(Sets.newHashSet(tag1));
-		
-		card1 = new Card("MIT/MITRE Scenario", "The Handshake site allows MITRE users to invite non-MITRE users to participate on the Handshake site.");
-		card1.setId(1L);
-		card1.setDependencies(Lists.newArrayList(dependency1, dependency2));
-		
-		card2 = new Card("id.mitre.org", "MITREid is an OpenID Identity Provider for MITRE employees.");
-		card2.setId(2L);
-		card2.setProvidesTags(Sets.newHashSet(tag1));
+		TestData.initialize();
 	}
 	
 	@Test
@@ -77,8 +46,8 @@ public class JpaCardRepositoryTest {
 		Set<Card> cards = cardRepository.getAll();
 		
 		assertTrue(cards.size() == 2);
-		assertTrue(cards.contains(card1));
-		assertTrue(cards.contains(card2));
+		assertTrue(cards.contains(CARD1));
+		assertTrue(cards.contains(CARD2));
 	}
 	
 	@Test
@@ -101,8 +70,8 @@ public class JpaCardRepositoryTest {
 		List<Dependency> dependencies = c.getDependencies();
 		
 		assertTrue(dependencies.size() == 2);
-		assertTrue(dependencies.contains(dependency1));
-		assertTrue(dependencies.contains(dependency2));
+		assertTrue(dependencies.contains(DEPENDENCY1));
+		assertTrue(dependencies.contains(DEPENDENCY2));
 	}
 	
 	@Test
@@ -112,7 +81,7 @@ public class JpaCardRepositoryTest {
 		Set<Tag> tags = c.getProvidesTags();
 		
 		assertTrue(tags.size() == 1);
-		assertTrue(tags.contains(tag1));
+		assertTrue(tags.contains(TAG1));
 	}
 	
 }

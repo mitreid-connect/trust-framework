@@ -1,4 +1,4 @@
-package org.mitre.dtf.repository;
+package org.mitre.dtf.repository.impl;
 
 import static org.mitre.util.jpa.JpaUtil.saveOrUpdate;
 
