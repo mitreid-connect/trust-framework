@@ -24,7 +24,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 	
 	<bean class ="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
