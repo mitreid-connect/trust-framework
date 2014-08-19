@@ -19,9 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 @Entity
 @Table(name = "Card")
 @NamedQueries({
@@ -31,7 +28,9 @@ public class Card {
 
 	private long id; // unique identifier
 	private String title; // human-readable title
-	private String description; // human-readable description
+	private String businessTxt;
+	private String legalTxt;
+	private String technicalTxt;
 	private List<Dependency> dependencies; // list of dependency slots
 	private Set<Tag> providesTags; // set of tags this card provides
 
@@ -40,14 +39,6 @@ public class Card {
 	 */
 	public Card() {
 		// left blank intentionally
-	}
-
-	public Card(String title, String description) {
-		this.title = title;
-		this.description = description;
-		
-		this.dependencies = Lists.newArrayList();
-		this.providesTags = Sets.newHashSet();
 	}
 
 	/**
@@ -84,19 +75,51 @@ public class Card {
 	}
 
 	/**
-	 * @return the description
+	 * @return the businessTxt
 	 */
 	@Basic
-	@Column(name = "description")
-	public String getDescription() {
-		return description;
+	@Column(name = "businessTxt")
+	public String getBusinessTxt() {
+		return businessTxt;
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param businessTxt the businessTxt to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setBusinessTxt(String businessTxt) {
+		this.businessTxt = businessTxt;
+	}
+
+	/**
+	 * @return the legalTxt
+	 */
+	@Basic
+	@Column(name = "legalTxt")
+	public String getLegalTxt() {
+		return legalTxt;
+	}
+
+	/**
+	 * @param legalTxt the legalTxt to set
+	 */
+	public void setLegalTxt(String legalTxt) {
+		this.legalTxt = legalTxt;
+	}
+
+	/**
+	 * @return the technicalTxt
+	 */
+	@Basic
+	@Column(name = "technicalTxt")
+	public String getTechnicalTxt() {
+		return technicalTxt;
+	}
+
+	/**
+	 * @param technicalTxt the technicalTxt to set
+	 */
+	public void setTechnicalTxt(String technicalTxt) {
+		this.technicalTxt = technicalTxt;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card")
@@ -129,12 +152,16 @@ public class Card {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((dependencies == null) ? 0 : dependencies.hashCode());
+				+ ((businessTxt == null) ? 0 : businessTxt.hashCode());
 		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+				+ ((dependencies == null) ? 0 : dependencies.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result
+				+ ((legalTxt == null) ? 0 : legalTxt.hashCode());
+		result = prime * result
 				+ ((providesTags == null) ? 0 : providesTags.hashCode());
+		result = prime * result
+				+ ((technicalTxt == null) ? 0 : technicalTxt.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -151,22 +178,32 @@ public class Card {
 		if (getClass() != obj.getClass())
 			return false;
 		Card other = (Card) obj;
+		if (businessTxt == null) {
+			if (other.businessTxt != null)
+				return false;
+		} else if (!businessTxt.equals(other.businessTxt))
+			return false;
 		if (dependencies == null) {
 			if (other.dependencies != null)
 				return false;
 		} else if (!dependencies.equals(other.dependencies))
 			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
+			return false;
+		if (legalTxt == null) {
+			if (other.legalTxt != null)
+				return false;
+		} else if (!legalTxt.equals(other.legalTxt))
 			return false;
 		if (providesTags == null) {
 			if (other.providesTags != null)
 				return false;
 		} else if (!providesTags.equals(other.providesTags))
+			return false;
+		if (technicalTxt == null) {
+			if (other.technicalTxt != null)
+				return false;
+		} else if (!technicalTxt.equals(other.technicalTxt))
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -181,10 +218,8 @@ public class Card {
 	 */
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", title=" + title + ", description="
-				+ description + ", dependencies=" + dependencies
-				+ ", providesTags=" + providesTags + "]";
+		return "Card [id=" + id + ", title=" + title + ", providesTags="
+				+ providesTags + "]";
 	}
-
 
 }
