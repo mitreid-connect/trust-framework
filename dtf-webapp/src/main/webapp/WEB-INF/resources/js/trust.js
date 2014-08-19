@@ -3,9 +3,8 @@ var app = angular.module("TrustFramework", ['ui.bootstrap']);
 app.controller('TrustCtrl', function($scope, $http){
     $scope.date = new Date();
     $scope.cards = {};
-    $scope.hello = function(){ return "hello"};
     $scope.error = "";
-    $scope.getCard = function(){
+    $scope.getCards = function(){
         $http({
             url: './card',
             method: "GET"
@@ -20,5 +19,19 @@ app.controller('TrustCtrl', function($scope, $http){
     $scope.selectCard = function(card){
         $scope.selectedCard = card;
     }
+    
+    $scope.businessTxt = function(card){
+    	card.currentTxt = card.businessTxt;
+    };
+    
+    $scope.legalTxt = function(card){
+    	card.currentTxt = card.legalTxt;
+    };
+    
+    $scope.technicalTxt = function(card){
+    	card.currentTxt = card.technicalTxt;
+    };
+    
+    $scope.getCards();
 
 });
