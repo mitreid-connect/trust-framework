@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/trust.css" />
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
@@ -39,22 +40,24 @@
 				</div>
 				<div class="panel-body">
 					<div>{{card.currentTxt}}</div>
-					<br> Provides:
-					<div ng-repeat="tag in card.providesTags">{{tag.name}}</div>
+					<br> Provides: <p>
+					<div ng-repeat="tag in card.providesTags">
+						<span class="label label-warning">{{tag.name}}</span>
+					</div>
 					<br> Depends on: <br>
 					<div class="dependencies btn-group btn-group-lg">
 
 						<div class="btn-group" ng-repeat="dependency in card.dependencies">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								{{dependency.description}}<br>
-								Required tags: 
+								{{dependency.description}}<br> Required tags:<p>
 								<div ng-repeat="tag in dependency.tags">
-									{{tag.name}}
+									<span class="label label-warning">{{tag.name}}</span>
 								</div>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Dropdown link</a></li>
-								<li><a href="#">Dropdown link</a></li>
+								<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)">
+									{{candidate.title}}
+								</li>
 							</ul>
 						</div>
 

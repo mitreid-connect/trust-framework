@@ -5,6 +5,7 @@ app.controller('TrustCtrl', function($scope, $http){
     $scope.cards = {};
     $scope.error = "";
     
+    // gets all cards from the server
     $scope.getCards = function(){
         $http({
             url: './card',
@@ -16,9 +17,30 @@ app.controller('TrustCtrl', function($scope, $http){
         })
     };
     
+    // returns the set of cards that satisfy the input dependency
     $scope.getCandidateCards = function(dependency){
-    	// TODO write this function
+    	var candidates = [];
+    	for (i = 0; i < $scope.cards.length; i++) {
+    		var currentCard = $scope.cards[i];
+    		var isSuperset = dependency.tags.every(function(val) { 
+    			return tagIndexOf(currentCard.providesTags, val) >= 0;
+    			}
+    		);
+    		if (isSuperset) {
+    			candidates.push($scope.cards[i]);
+    		}
+    	}
+    	return candidates;
     }
+    
+    // returns index of a tag in an array of tag objects, or -1 if not found
+    function tagIndexOf(tags, searchTag) {
+        for(var i = 0; i < tags.length; i++) {
+            if (tags[i].id === searchTag.id) return i;
+        }
+        return -1;
+    }
+   
     
     $scope.selectCard = function(card){
         $scope.selectedCard = card;
