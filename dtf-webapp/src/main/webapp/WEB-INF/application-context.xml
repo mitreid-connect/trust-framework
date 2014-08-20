@@ -26,8 +26,6 @@ Licensed under the Apache License, Version 2.0 (the "License");
 	<mvc:annotation-driven
 		ignoreDefaultModelOnRedirect="true" />
 
-	<mvc:default-servlet-handler />
-
 	<!-- Import the data context -->
 	<import resource="data-context.xml" />
 	<import resource="jpa-config.xml" />
