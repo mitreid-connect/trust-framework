@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/trust.css" />
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript" src="resources/js/trust.js"></script>
@@ -38,12 +39,28 @@
 				</div>
 				<div class="panel-body">
 					<div>{{card.currentTxt}}</div>
-					<br>
-					Provides: <div ng-repeat="tag in card.providesTags">{{tag.name}} </div>
-					<br>
-					
+					<br> Provides:
+					<div ng-repeat="tag in card.providesTags">{{tag.name}}</div>
+					<br> Depends on: <br>
+					<div class="dependencies btn-group btn-group-lg">
+
+						<div class="btn-group" ng-repeat="dependency in card.dependencies">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								{{dependency.description}}<br>
+								Required tags: 
+								<div ng-repeat="tag in dependency.tags">
+									{{tag.name}}
+								</div>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Dropdown link</a></li>
+								<li><a href="#">Dropdown link</a></li>
+							</ul>
+						</div>
+
+					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>

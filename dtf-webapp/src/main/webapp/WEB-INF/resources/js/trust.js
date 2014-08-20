@@ -4,6 +4,7 @@ app.controller('TrustCtrl', function($scope, $http){
     $scope.date = new Date();
     $scope.cards = {};
     $scope.error = "";
+    
     $scope.getCards = function(){
         $http({
             url: './card',
@@ -15,6 +16,9 @@ app.controller('TrustCtrl', function($scope, $http){
         })
     };
     
+    $scope.getCandidateCards = function(dependency){
+    	// TODO write this function
+    }
     
     $scope.selectCard = function(card){
         $scope.selectedCard = card;
