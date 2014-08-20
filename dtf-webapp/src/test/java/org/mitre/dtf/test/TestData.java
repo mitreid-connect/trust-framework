@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.mitre.dtf.model.Card;
+import org.mitre.dtf.model.CardNode;
 import org.mitre.dtf.model.Dependency;
+import org.mitre.dtf.model.Instance;
 import org.mitre.dtf.model.Tag;
 import org.springframework.http.MediaType;
 
@@ -32,6 +34,10 @@ public final class TestData {
 	public static final Dependency DEPENDENCY2 = new Dependency("OpenID Provider #2");
 	
 	public static final Tag TAG1 = new Tag("OpenID Provider");
+	
+	public static final CardNode CARDNODE1 = new CardNode();
+	public static final CardNode CARDNODE2 = new CardNode();
+	public static final Instance INSTANCE1 = new Instance();
 	
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),                       
@@ -63,5 +69,17 @@ public final class TestData {
 		CARD2.setTechnicalTxt("This is the TECHNICAL text.");
 		CARD2.setProvidesTags(Sets.newHashSet(TAG1));
 		CARD2.setDependencies(new ArrayList<Dependency>());
+		
+		CARDNODE1.setId(1);
+		CARDNODE1.setCard(CARD1);
+		CARDNODE2.setId(2);
+		CARDNODE2.setCard(CARD2);
+		CARDNODE2.setParentCardNode(CARDNODE1);
+		
+		INSTANCE1.setId(1);
+		INSTANCE1.setName("First Instance");
+		INSTANCE1.setRootCardNode(CARDNODE1);
+		INSTANCE1.setCardNodeTree(Sets.newHashSet(CARDNODE1, CARDNODE2));
+		
 	}
 }

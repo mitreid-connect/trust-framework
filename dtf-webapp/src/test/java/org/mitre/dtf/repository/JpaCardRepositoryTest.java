@@ -36,7 +36,7 @@ public class JpaCardRepositoryTest {
 	@Autowired
 	CardRepository cardRepository;
 
-	// get testing data from TestData.java
+	// get testing data from with static import from TestData.java
 	
 	@Before
 	public void setUp() {
