@@ -32,10 +32,10 @@ public class CardController {
 	}
 	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody Set<CardNode> saveCardTreeInstance(@RequestBody Set<CardNode> instance) {
+	public @ResponseBody String saveInstance(@RequestBody String json) {
 		
 		// TODO
 		
-		return instance;
+		return json;
 	}
 }
