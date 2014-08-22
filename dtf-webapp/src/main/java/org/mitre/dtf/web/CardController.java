@@ -1,9 +1,10 @@
 package org.mitre.dtf.web;
 
+import java.util.List;
 import java.util.Set;
 
 import org.mitre.dtf.model.Card;
-import org.mitre.dtf.model.CardNode;
+import org.mitre.dtf.model.InstanceCard;
 import org.mitre.dtf.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,10 +33,11 @@ public class CardController {
 	}
 	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody String saveInstance(@RequestBody String json) {
+	public @ResponseBody List<InstanceCard> saveInstance(@RequestBody List<InstanceCard> instanceCards) {
 		
 		// TODO
+		cardService.saveInstance(instanceCards);
 		
-		return json;
+		return instanceCards;
 	}
 }

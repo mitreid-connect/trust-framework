@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -83,10 +82,7 @@ public class Instance {
 	/**
 	 * @return the cardTree
 	 */
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "InstanceCardNodes", 
-	joinColumns = @JoinColumn(name = "instanceId", referencedColumnName = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "cardNodeId", referencedColumnName = "id"))
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "instance")
 	@JsonManagedReference
 	public Set<CardNode> getCardNodeTree() {
 		return cardNodeTree;

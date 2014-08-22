@@ -6,6 +6,7 @@ import static org.mitre.dtf.test.TestData.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mitre.dtf.model.Instance;
 import org.mitre.dtf.test.TestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -35,8 +36,8 @@ public class JpaInstanceRepositoryTest {
 	@Test
 	public void testRoundTrip() {
 		instanceRepository.save(INSTANCE1);
-		
-		assertEquals(INSTANCE1, instanceRepository.getById(1));
+		Instance result = instanceRepository.getById(1);
+		assertEquals(INSTANCE1, result);
 	}
 
 }

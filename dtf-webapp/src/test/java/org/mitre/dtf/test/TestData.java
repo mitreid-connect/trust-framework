@@ -76,7 +76,7 @@ public final class TestData {
 		CARDNODE2.setCard(CARD2);
 		CARDNODE2.setParentCardNode(CARDNODE1);
 		
-		INSTANCE1.setId(1);
+		INSTANCE1.setId(1L);
 		INSTANCE1.setName("First Instance");
 		INSTANCE1.setRootCardNode(CARDNODE1);
 		INSTANCE1.setCardNodeTree(Sets.newHashSet(CARDNODE1, CARDNODE2));

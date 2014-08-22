@@ -4,6 +4,8 @@
 package org.mitre.dtf.model;
 
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * This class represents a card as part of a trust framework instance as part of
@@ -30,6 +34,12 @@ public class CardNode {
 	private long id;
 	private Card card;
 	private CardNode parentCardNode;
+	private List<CardNode> childCardNodes;
+	private Instance instance;
+	
+	public CardNode() {
+		// default empty constructor
+	}
 	
 	/**
 	 * @return the id
@@ -77,6 +87,39 @@ public class CardNode {
 	public void setParentCardNode(CardNode parentCardNode) {
 		this.parentCardNode = parentCardNode;
 	}
+	/**
+	 * @return the childCardNodes
+	 */
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentCardNode")
+	@JsonManagedReference
+	public List<CardNode> getChildCardNodes() {
+		return childCardNodes;
+	}
+
+	/**
+	 * @param childCardNodes the childCardNodes to set
+	 */
+	public void setChildCardNodes(List<CardNode> childCardNodes) {
+		this.childCardNodes = childCardNodes;
+	}
+
+	/**
+	 * @return the instance
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "instanceId", referencedColumnName = "id")
+	@JsonBackReference
+	public Instance getInstance() {
+		return instance;
+	}
+
+	/**
+	 * @param instance the instance to set
+	 */
+	public void setInstance(Instance instance) {
+		this.instance = instance;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
