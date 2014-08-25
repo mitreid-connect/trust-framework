@@ -4,12 +4,12 @@
   Time: 1:07 PM
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<html ng-app="TrustFramework">
+<html ng-app="trustFramework">
 <head>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/trust.css" />
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
 <title>Trust Framework</title>
 </head>
 
-<body ng-controller="TrustCtrl">
+<body ng-controller="trustCtrl">
 	<div>
 		<div>
 			<span class="label label-danger">{{error}}</span>
@@ -41,18 +41,18 @@
 				<div class="panel-body">
 					<div>{{card.currentTxt}}</div>
 					<br> Provides: <p>
-					<div ng-repeat="tag in card.providesTags">
+					<span ng-repeat="tag in card.providesTags">
 						<span class="label label-warning">{{tag.name}}</span>
-					</div>
+					</span>
 					<br> Depends on: <br>
 					<div class="dependencies btn-group btn-group-lg">
 
 						<div class="btn-group" ng-repeat="dependency in card.dependencies">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 								{{dependency.description}}<br> Required tags:<p>
-								<div ng-repeat="tag in dependency.tags">
+								<span ng-repeat="tag in dependency.tags">
 									<span class="label label-warning">{{tag.name}}</span>
-								</div>
+								</span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)">

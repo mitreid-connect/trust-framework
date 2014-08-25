@@ -1,6 +1,6 @@
-var app = angular.module("TrustFramework", ['ui.bootstrap']);
+var app = angular.module("trustFramework", ['ui.bootstrap']);
 
-app.controller('TrustCtrl', function($scope, $http){
+app.controller('trustCtrl', function($scope, $http){
     $scope.date = new Date();
     $scope.cards = {};
     $scope.error = "";

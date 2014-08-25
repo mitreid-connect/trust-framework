@@ -1,2 +1,7 @@
 INSERT INTO tag (name) VALUES
-('OpenID Provider');
+('PolicyAuthorityParty'),
+('SystemEndpoint'),
+('ExecutiveOfficer'),
+('TrustFrameworkSystemRoles'),
+('SystemOperator'),
+('RelyingParty');
