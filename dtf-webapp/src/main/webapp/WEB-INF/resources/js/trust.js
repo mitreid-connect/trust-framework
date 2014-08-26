@@ -2,8 +2,10 @@ var app = angular.module("trustFramework", ['ui.bootstrap']);
 
 app.controller('trustCtrl', function($scope, $http){
     $scope.date = new Date();
-    $scope.cards = {};
+    $scope.cards = [];
+    $scope.instanceCards = [];
     $scope.error = "";
+    
     
     // gets all cards from the server
     $scope.getCards = function(){
@@ -12,6 +14,7 @@ app.controller('trustCtrl', function($scope, $http){
             method: "GET"
         }).success(function(data, status, headers, config){
             $scope.cards = data;
+            $scope.instanceCards.push(data[0]);
         }).error(function(data, status, headers, config){
             $scope.error = data;
         })
@@ -31,7 +34,7 @@ app.controller('trustCtrl', function($scope, $http){
     		}
     	}
     	return candidates;
-    }
+    };
     
     // returns index of a tag in an array of tag objects, or -1 if not found
     function tagIndexOf(tags, searchTag) {
@@ -39,11 +42,16 @@ app.controller('trustCtrl', function($scope, $http){
             if (tags[i].id === searchTag.id) return i;
         }
         return -1;
-    }
+    };
    
     
     $scope.selectCard = function(card){
         $scope.selectedCard = card;
+    };
+    
+    $scope.addJsonInstanceCard = function(card, parent) {
+    	 $scope.instance.push({"id":card.id, "parent": parent.id, "children":[]});
+    	 parent.children.push(card.id);
     }
     
     $scope.businessTxt = function(card){
@@ -59,5 +67,4 @@ app.controller('trustCtrl', function($scope, $http){
     };
     
     $scope.getCards();
-
 });

@@ -26,8 +26,14 @@
 		</div>
 	</div>
 
+	<div>
+		<button type="button" class="btn btn-default">
+			Send Instance
+		</button>
+	</div>
+
 	<div class="list-group">
-		<div class="card" ng-repeat="card in cards">
+		<div class="card" ng-repeat="card in instanceCards">
 			<div class="panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">{{card.title}}</h3>
@@ -40,24 +46,22 @@
 				</div>
 				<div class="panel-body">
 					<div>{{card.currentTxt}}</div>
-					<br> Provides: <p>
-					<span ng-repeat="tag in card.providesTags">
-						<span class="label label-warning">{{tag.name}}</span>
-					</span>
-					<br> Depends on: <br>
+					<br> Provides:
+					<p>
+						<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
+						</span> <br> Depends on: <br>
 					<div class="dependencies btn-group btn-group-lg">
 
 						<div class="btn-group" ng-repeat="dependency in card.dependencies">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								{{dependency.description}}<br> Required tags:<p>
-								<span ng-repeat="tag in dependency.tags">
-									<span class="label label-warning">{{tag.name}}</span>
-								</span>
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen">
+								{{dependency.description}}<br> Required tags:
+								<p>
+									<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>
+									</span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)">
-									{{candidate.title}}
-								</li>
+								<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
+									ng-click="instanceCards.push(candidate); dependency.chosen=true">{{candidate.title}}</li>
 							</ul>
 						</div>
 
