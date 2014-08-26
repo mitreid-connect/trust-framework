@@ -93,6 +93,7 @@ public class Instance {
 	public void setCardNodeTree(Set<CardNode> cardNodeTree) {
 		this.cardNodeTree = cardNodeTree;
 	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -136,5 +137,13 @@ public class Instance {
 		} else if (!rootCardNode.equals(other.rootCardNode))
 			return false;
 		return true;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Instance [id=" + id + ", name=" + name + ", rootCardNode=" + rootCardNode + ", cardNodeTree="
+				+ cardNodeTree + "]";
 	}
 }

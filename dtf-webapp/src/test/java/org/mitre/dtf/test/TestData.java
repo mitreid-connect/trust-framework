@@ -33,10 +33,12 @@ public final class TestData {
 	public static final Dependency DEPENDENCY1 = new Dependency("Supporting Executive Officer");
 	public static final Dependency DEPENDENCY2 = new Dependency("Policy Authority Party");
 	public static final Dependency DEPENDENCY3 = new Dependency("System Endpoint");
+	public static final Dependency DEPENDENCY4 = new Dependency("Trust Framework System Roles");
 	
 	public static final Tag TAG1 = new Tag("ExecutiveOfficer");
 	public static final Tag TAG2 = new Tag("PolicyAuthorityParty");
 	public static final Tag TAG3 = new Tag("SystemEndpoint");
+	public static final Tag TAG4 = new Tag("TrustFrameworkSystemRoles");
 	
 	public static final CardNode CARDNODE1 = new CardNode();
 	public static final CardNode CARDNODE2 = new CardNode();
@@ -51,6 +53,7 @@ public final class TestData {
 		TAG1.setId(3L);
 		TAG2.setId(1L);
 		TAG3.setId(2L);
+		TAG4.setId(4L);
 		
 		DEPENDENCY1.setId(1L);
 		DEPENDENCY1.setCard(CARD1);
@@ -61,6 +64,9 @@ public final class TestData {
 		DEPENDENCY3.setId(3L);
 		DEPENDENCY3.setCard(CARD1);
 		DEPENDENCY3.setTags(Sets.newHashSet(TAG3));
+		DEPENDENCY4.setId(4L);
+		DEPENDENCY4.setCard(CARD2);
+		DEPENDENCY4.setTags(Sets.newHashSet(TAG4));
 		
 		CARD1.setId(1L);
 		CARD1.setTitle("Trust Framework Rules Envelope");
@@ -76,13 +82,17 @@ public final class TestData {
 		CARD2.setLegalTxt("legal text");
 		CARD2.setTechnicalTxt("technical text");
 		CARD2.setProvidesTags(Sets.newHashSet(TAG2));
-		CARD2.setDependencies(new ArrayList<Dependency>());
+		CARD2.setDependencies(Lists.newArrayList(DEPENDENCY4));
 		
 		CARDNODE1.setId(1);
 		CARDNODE1.setCard(CARD1);
+		CARDNODE1.setChildCardNodes(Lists.newArrayList(CARDNODE2));
+		CARDNODE1.setInstance(INSTANCE1);
 		CARDNODE2.setId(2);
 		CARDNODE2.setCard(CARD2);
 		CARDNODE2.setParentCardNode(CARDNODE1);
+		CARDNODE2.setChildCardNodes(new ArrayList<CardNode>());
+		CARDNODE2.setInstance(INSTANCE1);
 		
 		INSTANCE1.setId(1L);
 		INSTANCE1.setName("First Instance");

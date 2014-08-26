@@ -132,6 +132,7 @@ public class CardNode {
 		result = prime * result + ((parentCardNode == null) ? 0 : parentCardNode.hashCode());
 		return result;
 	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -158,6 +159,5 @@ public class CardNode {
 			return false;
 		return true;
 	}
-	
-	
+
 }
