@@ -27,7 +27,7 @@
 	</div>
 
 	<div>
-		<button type="button" class="btn btn-default">
+		<button type="button" class="btn btn-default" ng-click="postInstance()">
 			Send Instance
 		</button>
 	</div>
@@ -61,7 +61,7 @@
 							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
-									ng-click="instanceCards.push(candidate); dependency.chosen=true">{{candidate.title}}</li>
+									ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosen=true">{{candidate.title}}</li>
 							</ul>
 						</div>
 

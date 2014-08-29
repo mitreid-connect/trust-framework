@@ -6,6 +6,7 @@ app.controller('trustCtrl', function($scope, $http){
     $scope.instanceCards = [];
     $scope.error = "";
     
+    $scope.instance = [];
     
     // gets all cards from the server
     $scope.getCards = function(){
@@ -15,10 +16,21 @@ app.controller('trustCtrl', function($scope, $http){
         }).success(function(data, status, headers, config){
             $scope.cards = data;
             $scope.instanceCards.push(data[0]);
+            $scope.addJsonInstanceCard(data[0], "");
         }).error(function(data, status, headers, config){
             $scope.error = data;
         })
     };
+    
+    $scope.postInstance = function(){
+    	$http({
+    		url: './instance',
+    		method: "POST",
+    		data: $scope.instance
+    	}).success(function(data){
+    		$scope.instance = data;
+    	})
+    }
     
     // returns the set of cards that satisfy the input dependency
     $scope.getCandidateCards = function(dependency){
@@ -49,9 +61,28 @@ app.controller('trustCtrl', function($scope, $http){
         $scope.selectedCard = card;
     };
     
+
+    $scope.getJsonInstanceCard = function(card){
+    	if (!card) {
+    		return ""
+    	}
+    	for (jic in $scope.instance) {
+    		if (jic.id === card.id) {
+    			return jic;
+    		} else {
+    			return ""; //not found
+    		}
+    	}
+    }
+    
     $scope.addJsonInstanceCard = function(card, parent) {
-    	 $scope.instance.push({"id":card.id, "parent": parent.id, "children":[]});
-    	 parent.children.push(card.id);
+    	 var jic = {};
+    	 var parentjic = $scope.getJsonInstanceCard(parent);
+    	 if (parentjic) {
+    		 jic = {"id":card.id, "parent": parentjic.id, "children":[]};
+    		 $scope.getJsonInstanceCard(parent).children.push(card.id);
+    	 }
+    	 $scope.instance.push(jic);
     }
     
     $scope.businessTxt = function(card){
