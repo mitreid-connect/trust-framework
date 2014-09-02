@@ -18,5 +18,7 @@ public interface CardService {
 
 	public Set<Card> getAllCards();
 	
+	public Card getById(long id);
+	
 	public Instance saveInstance(List<InstanceCard>instanceCards);
 }

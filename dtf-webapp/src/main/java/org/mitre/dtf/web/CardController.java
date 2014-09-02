@@ -7,6 +7,7 @@ import org.mitre.dtf.model.Card;
 import org.mitre.dtf.model.InstanceCard;
 import org.mitre.dtf.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,10 +33,15 @@ public class CardController {
 	    return new ModelAndView("ui");
 	}
 	
+	@RequestMapping(value = "/card/{id}", method = RequestMethod.GET)
+	public @ResponseBody Card getCard(@PathVariable("id") long id) {
+		return cardService.getById(id);
+	}
+	
+	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody List<InstanceCard> saveInstance(@RequestBody List<InstanceCard> instanceCards) {
 		
-		// TODO
 		cardService.saveInstance(instanceCards);
 		
 		return instanceCards;

@@ -34,6 +34,11 @@ public class DefaultCardService implements CardService {
 	public Set<Card> getAllCards() {
 		return cardRepository.getAll();
 	}
+	
+	@Override
+	public Card getById(long id) {
+		return cardRepository.getById(id);
+	}
 
 	//TODO some error checking. What happens if bad instance card ids are sent?
 	@Override
@@ -50,7 +55,7 @@ public class DefaultCardService implements CardService {
 		// build up the card nodes and links
 		for (InstanceCard ic : instanceCards) {
 			Card currentCard = idCardMap.get(ic.getId());
-			//TODO
+			//TODO actually do something with this instance
 			
 		}
 		
