@@ -12,7 +12,7 @@
 Nothing here, go <a href="/dynamic-trust-framework/card">here</a> for JSON resource for cards.
 </p>
 <p>
-Or <a href="/dynamic-trust-framework/ui">here</a> for the user interface.
+Or <a href="/dynamic-trust-framework/instance-builder">here</a> for the user interface.
 </p>
 </body>
 </html>

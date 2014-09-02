@@ -39,6 +39,11 @@ public class DefaultCardService implements CardService {
 	public Card getById(long id) {
 		return cardRepository.getById(id);
 	}
+	
+	@Override
+	public Card save(Card card) {
+		return cardRepository.save(card);
+	}
 
 	//TODO some error checking. What happens if bad instance card ids are sent?
 	@Override
