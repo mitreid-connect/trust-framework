@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
@@ -28,16 +27,15 @@ public class CardController {
 		return cardService.getAllCards();
 	}
 	
-	@RequestMapping("/ui")
-	public ModelAndView ui(){
-	    return new ModelAndView("ui");
-	}
-	
-	@RequestMapping(value = "/card/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/card/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody Card getCard(@PathVariable("id") long id) {
 		return cardService.getById(id);
 	}
 	
+	@RequestMapping(value = "/card/{id}", method = RequestMethod.PUT)
+	public @ResponseBody Card updateCard(@RequestBody Card card) {
+		return cardService.save(card);
+	}
 	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody List<InstanceCard> saveInstance(@RequestBody List<InstanceCard> instanceCards) {

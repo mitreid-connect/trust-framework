@@ -1,36 +1,48 @@
-var app = angular.module("trustFramework", ['ui.bootstrap']);
+var trustFrameworkApp = angular.module("trustFrameworkApp", ["ngRoute", "trustControllers", "ui.bootstrap"]);
 
-app.controller('trustCtrl', function($scope, $http){
+trustFrameworkApp.config(function($routeProvider) {
+    $routeProvider
+      .when('/instance-builder',
+      {
+    	  templateUrl: "views/instance-builder.html",
+    	  controller: "instanceCtrl"
+      })
+      .when('/card/:id',
+      {
+        templateUrl: "views/card.html",
+        controller: "trustCtrl"
+      })
+});
+
+var trustControllers = angular.module('trustControllers', []);
+
+trustControllers.controller('instanceCtrl', ['$scope', '$http',
+                                             function($scope, $http) {
     $scope.date = new Date();
     $scope.cards = [];
     $scope.instanceCards = [];
-    $scope.error = "";
-    
     $scope.instance = [];
-    
-    // gets all cards from the server
-    $scope.getCards = function(){
-        $http({
-            url: './card',
-            method: "GET"
-        }).success(function(data, status, headers, config){
-            $scope.cards = data;
-            $scope.instanceCards.push(data[0]);
-            $scope.addJsonInstanceCard(data[0], "");
-        }).error(function(data, status, headers, config){
-            $scope.error = data;
-        })
-    };
-    
+    $scope.error = "";
+	$http.get('./card').success(function(data) {
+		$scope.cards = data;
+		$scope.instanceCards.push(data[0]); // TODO make this intelligently choose root cards
+		$scope.addJsonInstanceCard(data[0], "");
+	}).error(function(data) {
+		$scope.error = data;
+	});
+	
     $scope.postInstance = function(){
     	$http({
     		url: './instance',
-    		method: "POST",
-    		data: $scope.instance
+    		method: 'POST',
+    		data: $scope.instance,
+    		headers: {
+    			'Content-Type': 'application/json'
+    		}
     	}).success(function(data){
     		$scope.instance = data;
     	})
-    }
+    };
     
     // returns the set of cards that satisfy the input dependency
     $scope.getCandidateCards = function(dependency){
@@ -48,15 +60,6 @@ app.controller('trustCtrl', function($scope, $http){
     	return candidates;
     };
     
-    // returns index of a tag in an array of tag objects, or -1 if not found
-    function tagIndexOf(tags, searchTag) {
-        for(var i = 0; i < tags.length; i++) {
-            if (tags[i].id === searchTag.id) return i;
-        }
-        return -1;
-    };
-   
-    
     $scope.selectCard = function(card){
         $scope.selectedCard = card;
     };
@@ -73,7 +76,7 @@ app.controller('trustCtrl', function($scope, $http){
     			return ""; //not found
     		}
     	}
-    }
+    };
     
     $scope.addJsonInstanceCard = function(card, parent) {
     	 var jic = {};
@@ -83,7 +86,7 @@ app.controller('trustCtrl', function($scope, $http){
     		 $scope.getJsonInstanceCard(parent).children.push(card.id);
     	 }
     	 $scope.instance.push(jic);
-    }
+    };
     
     $scope.businessTxt = function(card){
     	card.currentTxt = card.businessTxt;
@@ -96,6 +99,12 @@ app.controller('trustCtrl', function($scope, $http){
     $scope.technicalTxt = function(card){
     	card.currentTxt = card.technicalTxt;
     };
-    
-    $scope.getCards();
-});
+}]);
+
+// returns index of a tag in an array of tag objects, or -1 if not found
+function tagIndexOf(tags, searchTag) {
+    for(var i = 0; i < tags.length; i++) {
+        if (tags[i].id === searchTag.id) return i;
+    }
+    return -1;
+};

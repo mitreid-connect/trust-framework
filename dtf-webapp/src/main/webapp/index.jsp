@@ -1,18 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en" ng-app="trustFrameworkApp">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Dynamic Trust Framework Webapp - welcome page</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="resources/css/trust.css" />
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="resources/js/trust.js"></script>
+
+<title>Dynamic Trust Framework Webapp</title>
 </head>
 <body>
 <h2>Dynamic Trust Framework Webapp</h2>
-<p>
-Nothing here, go <a href="/dynamic-trust-framework/card">here</a> for JSON resource for cards.
-</p>
-<p>
-Or <a href="/dynamic-trust-framework/instance-builder">here</a> for the user interface.
-</p>
+
+<div>
+	<span><a href="#/instance-builder">Go to Instance Builder</a></span>
+	<br>
+	<span><a href="#/card">Go to Card Viewer/Editor</a></span>
+</div>
+	<div ng-view></div>
+	
 </body>
 </html>
