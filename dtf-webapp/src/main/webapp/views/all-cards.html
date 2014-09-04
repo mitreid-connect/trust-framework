@@ -1,6 +1,11 @@
-<!-- TODO Make all parts of the card editable. -->
+<div>
+	<div>
+		<span class="label label-danger">{{error}}</span>
+	</div>
+</div>
 
-
+<div class="list-group">
+	<div class="card" ng-repeat="card in cards">
 		<div class="panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title"><a href="#/card/{{card.id}}">{{card.title}}</a></h3>
@@ -30,9 +35,12 @@
 							<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
 								ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosen=true">{{candidate.title}}</li>
 						</ul>
+						<!-- TODO Make dropdown with carat and the main part of the button a link to the card -->
 					</div>
 
 				</div>
 			</div>
 
 		</div>
+	</div>
+</div>

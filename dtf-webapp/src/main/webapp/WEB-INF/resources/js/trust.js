@@ -4,9 +4,14 @@ trustFrameworkApp.config(function($routeProvider) {
 	$routeProvider.when('/instance-builder', {
 		templateUrl : "views/instance-builder.html",
 		controller : "instanceCtrl"
-	}).when('/card/:id', {
-		templateUrl : "views/card.html",
-		controller : "trustCtrl"
+	}).when('/card', {
+		templateUrl : "views/all-cards.html",
+		controller : "instanceCtrl"
+	}).when('/card/:cardId', {
+		templateUrl : 'views/card.html',
+		controller : "cardCtrl"
+	}).otherwise({
+		template : 'Move along, nothing to see here.'
 	})
 });
 
@@ -49,9 +54,28 @@ trustFrameworkApp.factory('trustServices', function() {
 
 var trustControllers = angular.module('trustControllers', []);
 
+trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$routeParams',
+		function($scope, trustServices, $http, $routeParams) {
+			$http.get('./card/' + $routeParams.cardId).success(function(data) {
+				$scope.card = data
+			}).error(function(data) {
+				$scope.error = data;
+			});
+			
+
+			$scope.getCandidateCards = function(dependency) {
+				return trustServices.getCandidateCards($scope.cards, dependency);
+			};
+
+			$scope.selectTxt = trustServices.selectTxt;
+
+			
+		} ]);
+
 trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http',
 		function($scope, trustServices, $http) {
 
+			$scope.cards = [];
 			$scope.instanceCards = [];
 			$scope.instance = [];
 
@@ -68,7 +92,7 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 			$scope.getCandidateCards = function(dependency) {
 				return trustServices.getCandidateCards($scope.cards, dependency);
 			};
-			
+
 			$scope.selectTxt = trustServices.selectTxt;
 
 			$scope.postInstance = function() {

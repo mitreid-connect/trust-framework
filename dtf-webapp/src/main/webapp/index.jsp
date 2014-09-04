@@ -22,7 +22,7 @@
 <div>
 	<span><a href="#/instance-builder">Go to Instance Builder</a></span>
 	<br>
-	<span><a href="#/card">Go to Card Viewer/Editor</a></span>
+	<span><a href="#/card">View all cards</a></span>
 </div>
 	<div ng-view></div>
 	
