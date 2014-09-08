@@ -32,7 +32,7 @@ public class CardController {
 		return cardService.getById(id);
 	}
 	
-	@RequestMapping(value = "/card/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/card/{id}", method = RequestMethod.PUT, consumes = "application/json")
 	public @ResponseBody Card updateCard(@RequestBody Card card) {
 		return cardService.save(card);
 	}

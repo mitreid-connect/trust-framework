@@ -25,7 +25,7 @@
 				<div class="dependencies btn-group btn-group-lg">
 
 					<div class="btn-group" ng-repeat="dependency in card.dependencies">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							{{dependency.description}}<br> Required tags:
 							<p>
 								<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>

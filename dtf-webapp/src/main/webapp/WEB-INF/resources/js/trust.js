@@ -1,4 +1,4 @@
-var trustFrameworkApp = angular.module("trustFrameworkApp", [ "ngRoute", "trustControllers", "ui.bootstrap" ]);
+var trustFrameworkApp = angular.module('trustFrameworkApp', [ 'ngRoute', 'customControl', 'trustControllers', 'ui.bootstrap' ]);
 
 trustFrameworkApp.config(function($routeProvider) {
 	$routeProvider.when('/instance-builder', {
@@ -15,9 +15,45 @@ trustFrameworkApp.config(function($routeProvider) {
 	})
 });
 
+
+
+angular.module('customControl', ['ngSanitize']).
+  directive('contenteditable', ['$sce', function($sce) {
+    return {
+      restrict: 'A', // only activate on element attribute
+      require: '?ngModel', // get a hold of NgModelController
+      link: function(scope, element, attrs, ngModel) {
+        if (!ngModel) return; // do nothing if no ng-model
+
+        // Specify how UI should be updated
+        ngModel.$render = function() {
+          element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
+        };
+
+        // Listen for change events to enable binding
+        element.on('blur keyup change', function() {
+          scope.$apply(read);
+        });
+        read(); // initialize
+
+        // Write data to the model
+        function read() {
+          var html = element.html();
+          // When we clear the content editable the browser leaves a <br> behind
+          // If strip-br attribute is provided then we strip this out
+          if ( attrs.stripBr && html == '<br>' ) {
+            html = '';
+          }
+          ngModel.$setViewValue(html);
+        }
+      }
+    };
+  }]);
+
+
+
 trustFrameworkApp.factory('trustServices', function() {
 	var date = new Date();
-	var cards = [];
 	var error = "";
 
 	return {
@@ -57,7 +93,8 @@ var trustControllers = angular.module('trustControllers', []);
 trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$routeParams',
 		function($scope, trustServices, $http, $routeParams) {
 			$http.get('./card/' + $routeParams.cardId).success(function(data) {
-				$scope.card = data
+				$scope.card = data;
+				$scope.card.currentTxt = $scope.card.businessTxt;
 			}).error(function(data) {
 				$scope.error = data;
 			});
@@ -69,7 +106,18 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 
 			$scope.selectTxt = trustServices.selectTxt;
 
-			
+			$scope.updateCard = function() {
+				$http({
+					url : './card/' + $routeParams.cardId,
+					method : 'PUT',
+					data : $scope.card,
+					headers : {
+						'Content-Type' : 'application/json'
+					}
+				}).success(function(data) {
+					$scope.card = data;
+				})
+			};
 		} ]);
 
 trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http',
@@ -89,6 +137,8 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 				$scope.error = data;
 			});
 
+
+			
 			$scope.getCandidateCards = function(dependency) {
 				return trustServices.getCandidateCards($scope.cards, dependency);
 			};

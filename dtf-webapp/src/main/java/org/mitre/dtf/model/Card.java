@@ -1,5 +1,7 @@
 package org.mitre.dtf.model;
 
+import org.mitre.util.json.CardDeserializer;
+
 import java.util.List;
 import java.util.Set;
 
@@ -19,11 +21,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 @Table(name = "Card")
 @NamedQueries({
 	@NamedQuery(name = "Card.findAll", query = "select c from Card c ORDER BY c.id")
 })
+@JsonDeserialize(using = CardDeserializer.class)
 public class Card {
 
 	private long id; // unique identifier
