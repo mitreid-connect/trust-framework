@@ -105,12 +105,14 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 				$scope.error = data;
 			});
 			
-
-			$scope.getCandidateCards = function(dependency) {
-				return trustServices.getCandidateCards($scope.cards, dependency);
-			};
-
 			$scope.selectTxt = trustServices.selectTxt;
+			
+			$scope.removeProvidesTag = function(tag) {
+				var i = $scope.card.providesTags.indexOf(tag);
+				if (i > -1) {
+				    $scope.card.providesTags.splice(i, 1);
+				}
+			};
 
 			$scope.updateCard = function() {
 				$http({
@@ -124,6 +126,9 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 					$scope.card = data;
 				})
 			};
+			
+			
+			
 		} ]);
 
 trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http',

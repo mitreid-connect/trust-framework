@@ -6,36 +6,47 @@
 	<button type="button" class="btn btn-default" ng-click="updateCard()">Update Card</button>
 </div>
 
-		<div class="panel-info">
-			<div class="panel-heading">
-				<div class="panel-title" contenteditable strip-br="true" ng-model="card.title">{{card.title}}</div>
+<div class="panel-info">
+	<div class="panel-heading">
+		<div class="panel-title" contenteditable strip-br="true" ng-model="card.title">{{card.title}}</div>
 
-				<div class="btn-group-sm">
-					<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.legalTxt(card)">legal</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.technicalTxt(card)">technical</button>
-				</div>
-			</div>
-			<div class="panel-body">
-				<div contenteditable strip-br="true" ng-model="card.businessTxt" ng-show="card.businessSelected">{{card.businessTxt}}</div>
-				<div contenteditable strip-br="true" ng-model="card.legalTxt" ng-show="card.legalSelected">{{card.legalTxt}}</div>
-				<div contenteditable strip-br="true" ng-model="card.technicalTxt" ng-show="card.technicalSelected">{{card.technicalTxt}}</div>
-				<br> Provides:
-				<p>
-					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
-					</span> <br> Depends on: <br>
-				<div class="dependencies btn-group btn-group-lg">
+		<div class="btn-group-sm">
+			<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
+			<button type="button" class="btn btn-default" ng-click="selectTxt.legalTxt(card)">legal</button>
+			<button type="button" class="btn btn-default" ng-click="selectTxt.technicalTxt(card)">technical</button>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div contenteditable strip-br="true" ng-model="card.businessTxt" ng-show="card.businessSelected">{{card.businessTxt}}</div>
+		<div contenteditable strip-br="true" ng-model="card.legalTxt" ng-show="card.legalSelected">{{card.legalTxt}}</div>
+		<div contenteditable strip-br="true" ng-model="card.technicalTxt" ng-show="card.technicalSelected">{{card.technicalTxt}}</div>
+		<br> Provides:
+		<p>
+		<div class="provides">
+			<span ng-repeat="tag in card.providesTags"> 
+			<span class="label label-warning providesTag"> 
+				{{tag.name}} 
+				<span ng-click="removeProvidesTag(tag)">
+					<span class="glyphicon glyphicon-remove"></span>
+				</span>
+			</span>
+			</span>
+		</div>
+		<p>
+		Depends on:
+		<div class="dependencies btn-group btn-group-lg">
 
-					<div class="btn-group" ng-repeat="dependency in card.dependencies">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen" contenteditable="true">
-							{{dependency.description}}<br> Required tags:
-							<p>
-								<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>
-								</span>
-						</button>
-					</div>
-
-				</div>
+			<div class="btn-group" ng-repeat="dependency in card.dependencies">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen"
+					contenteditable="true">
+					{{dependency.description}}<br> Required tags:
+					<p>
+						<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>
+						</span>
+				</button>
 			</div>
 
 		</div>
+	</div>
+
+</div>

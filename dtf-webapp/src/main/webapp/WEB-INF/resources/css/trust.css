@@ -23,6 +23,16 @@ body {
 	
 }
 
+.provides {
+	margin: 5px;
+	margin-bottom: 10px;
+}
+
+.providesTag {
+	border: solid 1px;
+	margin: 1px;
+}
+
 .candidateCard {
 	margin-left: 20px;
 }	
