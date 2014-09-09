@@ -24,13 +24,20 @@
 		<p>
 		<div class="provides">
 			<span ng-repeat="tag in card.providesTags"> 
-			<span class="label label-warning providesTag"> 
-				{{tag.name}} 
-				<span ng-click="removeProvidesTag(tag)">
-					<span class="glyphicon glyphicon-remove"></span>
+				<span class="label label-warning providesTag"> 
+					{{tag.name}} 
+					<span ng-click="removeProvidesTag(tag)">
+						<span class="glyphicon glyphicon-remove"></span>
+					</span>
 				</span>
 			</span>
-			</span>
+			<div class="tagChoices btn-group btn-group-sm">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Add a tag</button>
+				<ul class="dropdown-menu" role="menu">
+					<li ng-repeat="tag in allTags" ng-click="card.providesTags.push(tag)">{{tag.name}}</li>
+				</ul>
+			</div>
+			<span><button type="button" class="btn btn-sm">Create a tag</button></span> <!-- NYI -->
 		</div>
 		<p>
 		Depends on:
