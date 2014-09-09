@@ -74,15 +74,21 @@ trustFrameworkApp.factory('trustServices', function() {
 
 		selectTxt : {
 			businessTxt : function(card) {
-				card.currentTxt = card.businessTxt;
+				card.businessSelected = true;
+				card.legalSelected = false;
+				card.technicalSelected = false;
 			},
 
 			legalTxt : function(card) {
-				card.currentTxt = card.legalTxt;
+				card.legalSelected = true;
+				card.technicalSelected = false;
+				card.businessSelected = false;
 			},
 
 			technicalTxt : function(card) {
-				card.currentTxt = card.technicalTxt;
+				card.technicalSelected = true;
+				card.legalSelected = false;
+				card.businessSelected = false;
 			}
 		}
 	}
@@ -94,7 +100,7 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 		function($scope, trustServices, $http, $routeParams) {
 			$http.get('./card/' + $routeParams.cardId).success(function(data) {
 				$scope.card = data;
-				$scope.card.currentTxt = $scope.card.businessTxt;
+				$scope.card.businessSelected = true;
 			}).error(function(data) {
 				$scope.error = data;
 			});
