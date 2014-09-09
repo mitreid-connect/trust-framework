@@ -6,6 +6,10 @@
 	<button type="button" class="btn btn-default" ng-click="updateCard()">Update Card</button>
 </div>
 
+<!-- NYI -->
+<div><button type="button" class="btn btn-default">Create a tag</button></div>
+			
+
 <div class="panel-info">
 	<div class="panel-heading">
 		<div class="panel-title" contenteditable strip-br="true" ng-model="card.title">{{card.title}}</div>
@@ -26,7 +30,7 @@
 			<span ng-repeat="tag in card.providesTags"> 
 				<span class="label label-warning providesTag"> 
 					{{tag.name}} 
-					<span ng-click="removeProvidesTag(tag)">
+					<span ng-click="removeProvidesTag($index)">
 						<span class="glyphicon glyphicon-remove"></span>
 					</span>
 				</span>
@@ -37,23 +41,31 @@
 					<li ng-repeat="tag in allTags" ng-click="card.providesTags.push(tag)">{{tag.name}}</li>
 				</ul>
 			</div>
-			<span><button type="button" class="btn btn-sm">Create a tag</button></span> <!-- NYI -->
-		</div>
-		<p>
-		Depends on:
-		<div class="dependencies btn-group btn-group-lg">
 
-			<div class="btn-group" ng-repeat="dependency in card.dependencies">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen"
-					contenteditable="true">
-					{{dependency.description}}<br> Required tags:
-					<p>
-						<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>
-						</span>
-				</button>
+		</div>
+		<p>Depends on:
+		<div class="editableDependency" ng-repeat="dependency in card.dependencies">
+
+			<span ng-click="removeDependency($index)">
+				<span class="glyphicon glyphicon-remove"></span>
+			</span>
+			<div contenteditable strip-br="true">{{dependency.description}} </div>
+
+			<br> 
+			Required tags:
+			<p>
+				<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}<span
+					ng-click="removeDependencyTag($parent.$index, $index)"> <span class="glyphicon glyphicon-remove"></span></span>
+				</span>
+				</span>
+				<div class="tagChoices btn-group btn-group-sm">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Add a tag</button>
+				<ul class="dropdown-menu" role="menu">
+					<li ng-repeat="tag in allTags" ng-click="dependency.tags.push(tag)">{{tag.name}}</li>
+				</ul>
 			</div>
-
 		</div>
-	</div>
+		<button type="button" class="btn btn-sm">Add a dependency</button> <!-- NYI -->
 
+	</div>
 </div>

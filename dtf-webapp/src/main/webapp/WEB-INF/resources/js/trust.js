@@ -114,11 +114,17 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 			
 			$scope.selectTxt = trustServices.selectTxt;
 			
-			$scope.removeProvidesTag = function(tag) {
-				var i = $scope.card.providesTags.indexOf(tag);
-				if (i > -1) {
-				    $scope.card.providesTags.splice(i, 1);
-				}
+			$scope.removeProvidesTag = function(index) {
+
+				$scope.card.providesTags.splice(index, 1);
+			};
+			
+			$scope.removeDependency = function(index) {
+				$scope.card.dependencies.splice(index, 1);
+			};
+			
+			$scope.removeDependencyTag = function(dependencyIndex, tagIndex) {
+				$scope.card.dependencies[dependencyIndex].tags.splice(tagIndex, 1);
 			};
 
 			$scope.updateCard = function() {
