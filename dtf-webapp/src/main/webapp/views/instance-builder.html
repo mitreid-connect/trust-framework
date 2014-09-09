@@ -20,7 +20,9 @@
 	<div class="card" ng-repeat="card in instanceCards">
 		<div class="panel-info">
 			<div class="panel-heading">
-				<div class="panel-title"><a href="#/card/{{card.id}}" ng-bind-html="card.title"></a></div>
+				<div class="panel-title">
+					<a href="#/card/{{card.id}}" ng-bind-html="card.title"></a>
+				</div>
 
 				<div class="btn-group-sm">
 					<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
@@ -37,21 +39,32 @@
 				<p>
 					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
 					</span> <br> Depends on: <br>
-				<div class="dependencies btn-group btn-group-lg">
-
-					<div class="btn-group" ng-repeat="dependency in card.dependencies">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-disabled="dependency.chosen">
-							{{dependency.description}}<br> Required tags:
-							<p>
-								<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}</span>
-								</span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
-								ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosen=true">{{candidate.title}}</li>
-						</ul>
+				<div class="dependency" ng-repeat="dependency in card.dependencies">
+					<div class="panel panel-default">
+						<div class="panel-body">
+						{{dependency.description}}
+						<br>
+							Required tags: 
+							<span ng-repeat="tag in dependency.tags">
+								<span class="label label-warning">{{tag.name}}</span>
+							</span>
+							<br>
+							Select a card:
+							<br>
+							<div class="btn-group">
+								<a class="btn btn-default" ng-href="#/card/{{dependency.chosenCard.id}}">{{dependency.chosenCard.title}}</a>
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
+										ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosenCard=candidate">
+											{{candidate.title}}
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-
 				</div>
 			</div>
 

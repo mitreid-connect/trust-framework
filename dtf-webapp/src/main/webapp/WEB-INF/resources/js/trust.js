@@ -161,8 +161,6 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 				$scope.error = data;
 			});
 
-
-			
 			$scope.getCandidateCards = function(dependency) {
 				return trustServices.getCandidateCards($scope.cards, dependency);
 			};
