@@ -37,6 +37,16 @@ public class CardController {
 		return cardService.save(card);
 	}
 	
+	@RequestMapping(value = "/card/new", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Card newCard() {
+		return cardService.getNewCard();
+	}
+	
+	@RequestMapping(value = "/card/new", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody Card newCard(@RequestBody Card card) {
+		return cardService.save(card);
+	}
+	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody List<InstanceCard> saveInstance(@RequestBody List<InstanceCard> instanceCards) {
 		

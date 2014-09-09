@@ -24,6 +24,8 @@
 	<span><a href="#/instance-builder">Go to Instance Builder</a></span>
 	<br>
 	<span><a href="#/card">View all cards</a></span>
+	<br>
+	<span><a href="#/card/new">Create new card</a></span>
 </div>
 	<div ng-view></div>
 	

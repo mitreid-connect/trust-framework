@@ -20,6 +20,8 @@ public interface CardService {
 	
 	public Card getById(long id);
 	
+	public Card getNewCard();
+	
 	public Card save(Card card);
 	
 	public Instance saveInstance(List<InstanceCard>instanceCards);

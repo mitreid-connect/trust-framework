@@ -3,15 +3,19 @@
  */
 package org.mitre.dtf.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.mitre.dtf.model.Card;
 import org.mitre.dtf.model.CardNode;
+import org.mitre.dtf.model.Dependency;
 import org.mitre.dtf.model.Instance;
 import org.mitre.dtf.model.InstanceCard;
+import org.mitre.dtf.model.Tag;
 import org.mitre.dtf.repository.CardRepository;
 import org.mitre.dtf.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +42,19 @@ public class DefaultCardService implements CardService {
 	@Override
 	public Card getById(long id) {
 		return cardRepository.getById(id);
+	}
+	
+	@Override
+	public Card getNewCard() {
+		Card card = new Card();
+		card.setId(0L);
+		card.setTitle("New Card");
+		card.setBusinessTxt("business text placeholder");
+		card.setLegalTxt("legal text placeholder");
+		card.setTechnicalTxt("technical text placeholder");
+		card.setProvidesTags(new HashSet<Tag>());
+		card.setDependencies(new ArrayList<Dependency>());
+		return card;
 	}
 	
 	@Override

@@ -10,8 +10,11 @@ trustFrameworkApp.config(function($routeProvider) {
 	}).when('/card/:cardId', {
 		templateUrl : 'views/card.html',
 		controller : "cardCtrl"
+	}).when('/card/new', {
+		templateUrl : 'views/new-card.html',
+		controller : "newCardCtrl"
 	}).otherwise({
-		template : 'Move along, nothing to see here.'
+		template : 'Nothing to see here. Choose from the links above.'
 	})
 });
 
@@ -140,9 +143,52 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 				})
 			};
 			
-			
-			
 		} ]);
+
+trustControllers.controller('newCardCtrl', ['$scope', 'trustServices', '$http',
+        function($scope, trustServices, $http) {
+			$http.get('./card/new').success(function(data) {
+				$scope.card = data;
+				$scope.card.businessSelected = true;
+			}).error(function(data) {
+				$scope.error = data;
+			});
+
+			
+			$http.get('./tag').success(function(data) {
+				$scope.allTags = data;
+			}).error(function(data) {
+				$scope.error = data;
+			});
+			
+			$scope.saveNewCard = function() {
+				$http({
+					url : './card/new',
+					method : 'POST',
+					data : $scope.card,
+					headers : {
+						'Content-Type' : 'application/json'
+					}
+				}).success(function(data) {
+					$scope.card = data;
+				})
+			};
+			
+			$scope.selectTxt = trustServices.selectTxt;
+			
+			$scope.removeProvidesTag = function(index) {
+
+				$scope.card.providesTags.splice(index, 1);
+			};
+			
+			$scope.removeDependency = function(index) {
+				$scope.card.dependencies.splice(index, 1);
+			};
+			
+			$scope.removeDependencyTag = function(dependencyIndex, tagIndex) {
+				$scope.card.dependencies[dependencyIndex].tags.splice(tagIndex, 1);
+			};
+}])
 
 trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http',
 		function($scope, trustServices, $http) {
