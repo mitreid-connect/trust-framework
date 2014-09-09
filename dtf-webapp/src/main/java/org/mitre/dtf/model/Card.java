@@ -127,7 +127,7 @@ public class Card {
 		this.technicalTxt = technicalTxt;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card", orphanRemoval=true)
 	@JsonManagedReference
 	public List<Dependency> getDependencies() {
 		return dependencies;
