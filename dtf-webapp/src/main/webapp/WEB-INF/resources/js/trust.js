@@ -96,11 +96,18 @@ trustFrameworkApp.factory('trustServices', function() {
 
 var trustControllers = angular.module('trustControllers', []);
 
+// Controller for editing card functionality.
 trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$routeParams',
 		function($scope, trustServices, $http, $routeParams) {
 			$http.get('./card/' + $routeParams.cardId).success(function(data) {
 				$scope.card = data;
 				$scope.card.businessSelected = true;
+			}).error(function(data) {
+				$scope.error = data;
+			});
+			
+			$http.get('./tag').success(function(data) {
+				$scope.allTags = data;
 			}).error(function(data) {
 				$scope.error = data;
 			});
