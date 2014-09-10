@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -127,7 +128,7 @@ public class Card {
 		this.technicalTxt = technicalTxt;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card", orphanRemoval=true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval=true)
 	@JsonManagedReference
 	public List<Dependency> getDependencies() {
 		return dependencies;
