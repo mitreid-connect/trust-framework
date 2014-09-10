@@ -5,14 +5,14 @@ trustFrameworkApp.config(function($routeProvider) {
 		templateUrl : "views/instance-builder.html",
 		controller : "instanceCtrl"
 	}).when('/card', {
-		templateUrl : "views/all-cards.html",
+		templateUrl : 'views/all-cards.html',
 		controller : "instanceCtrl"
-	}).when('/card/:cardId', {
-		templateUrl : 'views/card.html',
-		controller : "cardCtrl"
 	}).when('/card/new', {
 		templateUrl : 'views/new-card.html',
 		controller : "newCardCtrl"
+	}).when('/card/:cardId', {
+		templateUrl : 'views/edit-card.html',
+		controller : "cardCtrl"
 	}).otherwise({
 		template : 'Nothing to see here. Choose from the links above.'
 	})
@@ -120,6 +120,11 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 			$scope.removeProvidesTag = function(index) {
 
 				$scope.card.providesTags.splice(index, 1);
+			};
+			
+			$scope.createNewDependency = function() {
+				var newDep = {"id" : 0, "description" : "description placeholder", "tags" : []};
+				$scope.card.dependencies.push(newDep);
 			};
 			
 			$scope.removeDependency = function(index) {

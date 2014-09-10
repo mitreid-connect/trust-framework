@@ -27,7 +27,8 @@
 	<br>
 	<span><a href="#/card/new">Create new card</a></span>
 </div>
-	<div ng-view></div>
+
+<div ng-view></div>
 	
 </body>
 </html>
