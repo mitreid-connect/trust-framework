@@ -36,12 +36,9 @@
 				<br> Provides:
 				<p>
 					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
-					</span> <br> Depends on: <br>
+					</span> <p> Depends on: <br>
 				<div class="dependency" ng-repeat="dependency in card.dependencies">
-					<div class="panel panel-default">
-						<div class="panel-body">
 						<div ng-bind-html="dependency.description"></div>
-						<br> 
 							<span ng-repeat="tag in dependency.tags">
 								<span class="label label-warning">{{tag.name}}</span>
 							</span>
@@ -61,8 +58,6 @@
 									</li>
 								</ul>
 							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 

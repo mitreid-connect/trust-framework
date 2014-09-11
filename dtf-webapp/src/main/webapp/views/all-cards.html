@@ -21,13 +21,12 @@
 				<br> Provides:
 				<p>
 					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
-					</span> <br> Depends on: <br>
+					</span> <p> Depends on: <br>
 				<div class="dependencies btn-group btn-group-lg">
 
 					<div class="btn-group" ng-repeat="dependency in card.dependencies">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<div ng-bind-html="dependency.description"></div>
-							<p>
 								<span ng-repeat="tag in dependency.tags">
 									<span class="label label-warning">{{tag.name}}</span>
 								</span>
