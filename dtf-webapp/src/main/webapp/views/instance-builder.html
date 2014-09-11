@@ -49,9 +49,10 @@
 							Select a card:
 							<br>
 							<div class="btn-group">
-								<a class="btn btn-default" ng-href="#/card/{{dependency.chosenCard.id}}">{{dependency.chosenCard.title}}</a>
+								<a class="btn btn-default" ng-href="#/card/{{dependency.chosenCard.id}}" ng-init="dependency.chosenCard.title='[empty]'">{{dependency.chosenCard.title}}</a>
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+									<span class="caret"></span> 
+									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"

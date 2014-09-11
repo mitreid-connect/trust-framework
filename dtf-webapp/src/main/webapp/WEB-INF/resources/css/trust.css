@@ -44,10 +44,16 @@ body {
 
 .nav-tabs {
     margin-bottom: 0;
+    cursor: pointer;
+}
+
+.glyphicon {
+	cursor: pointer;
 }
 
 .candidateCard {
 	margin-left: 20px;
+	cursor: pointer;
 }	
 
 [contenteditable] {
