@@ -12,16 +12,16 @@
 	<div class="panel-heading">
 		<div class="panel-title" contenteditable strip-br="true" ng-model="card.title">{{card.title}}</div>
 
-		<div class="btn-group-sm">
-			<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
-			<button type="button" class="btn btn-default" ng-click="selectTxt.legalTxt(card)">legal</button>
-			<button type="button" class="btn btn-default" ng-click="selectTxt.technicalTxt(card)">technical</button>
-		</div>
+
 	</div>
 	<div class="panel-body">
-		<div contenteditable strip-br="true" ng-model="card.businessTxt" ng-show="card.businessSelected">{{card.businessTxt}}</div>
-		<div contenteditable strip-br="true" ng-model="card.legalTxt" ng-show="card.legalSelected">{{card.legalTxt}}</div>
-		<div contenteditable strip-br="true" ng-model="card.technicalTxt" ng-show="card.technicalSelected">{{card.technicalTxt}}</div>
+
+		<tabset>
+			<tab heading="business"><div contenteditable strip-br="true" ng-model="card.businessTxt">{{card.businessTxt}}</div></tab>
+			<tab heading="legal"><div contenteditable strip-br="true" ng-model="card.legalTxt">{{card.legalTxt}}</div></tab>
+			<tab heading="technical"><div contenteditable strip-br="true" ng-model="card.technicalTxt">{{card.technicalTxt}}</div></tab>
+			
+		</tabset>
 		<br> Provides:
 		<p>
 		<div class="provides">
@@ -51,8 +51,6 @@
 			<div contenteditable strip-br="true">{{dependency.description}} </div>
 
 			<br> 
-			Required tags:
-			<p>
 				<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}<span
 					ng-click="removeDependencyTag($parent.$index, $index)"> <span class="glyphicon glyphicon-remove"></span></span>
 				</span>

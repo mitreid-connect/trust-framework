@@ -10,16 +10,14 @@
 			<div class="panel-heading">
 				<div class="panel-title"><a href="#/card/{{card.id}}" ng-bind-html="card.title"></a></div>
 
-				<div class="btn-group-sm">
-					<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.legalTxt(card)">legal</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.technicalTxt(card)">technical</button>
-				</div>
 			</div>
 			<div class="panel-body">
-				<div strip-br="true" ng-model="card.businessTxt" ng-show="card.businessSelected">{{card.businessTxt}}</div>
-				<div strip-br="true" ng-model="card.legalTxt" ng-show="card.legalSelected">{{card.legalTxt}}</div>
-				<div strip-br="true" ng-model="card.technicalTxt" ng-show="card.technicalSelected">{{card.technicalTxt}}</div>
+				<tabset>
+					<tab heading="business"><div ng-bind-html="card.businessTxt"></div></tab>
+					<tab heading="legal"><div ng-bind-html="card.legalTxt"></div></tab>
+					<tab heading="technical"><div ng-bind-html="card.technicalTxt"></div></tab>
+					
+				</tabset>
 				<br> Provides:
 				<p>
 					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
@@ -28,7 +26,7 @@
 
 					<div class="btn-group" ng-repeat="dependency in card.dependencies">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							{{dependency.description}}<br> Required tags:
+							<div ng-bind-html="dependency.description"></div>
 							<p>
 								<span ng-repeat="tag in dependency.tags">
 									<span class="label label-warning">{{tag.name}}</span>
@@ -38,7 +36,6 @@
 							<li class="candidateCard" ng-repeat="candidate in getCandidateCards(dependency)"
 								ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosen=true">{{candidate.title}}</li>
 						</ul>
-						<!-- TODO Make dropdown with carat and the main part of the button a link to the card -->
 					</div>
 
 				</div>

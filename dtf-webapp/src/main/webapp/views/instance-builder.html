@@ -24,17 +24,15 @@
 					<a href="#/card/{{card.id}}" ng-bind-html="card.title"></a>
 				</div>
 
-				<div class="btn-group-sm">
-					<button type="button" class="btn btn-default" ng-click="selectTxt.businessTxt(card)">business</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.legalTxt(card)">legal</button>
-					<button type="button" class="btn btn-default" ng-click="selectTxt.technicalTxt(card)">technical</button>
-				</div>
+
 			</div>
 			<div class="panel-body">
-				<div strip-br="true" ng-model="card.businessTxt" ng-show="card.businessSelected">{{card.businessTxt}}</div>
-				<div strip-br="true" ng-model="card.legalTxt" ng-show="card.legalSelected">{{card.legalTxt}}</div>
-				<div strip-br="true" ng-model="card.technicalTxt" ng-show="card.technicalSelected">{{card.technicalTxt}}</div>
-				<div>{{card.currentTxt}}</div>
+				<tabset>
+					<tab heading="business"><div ng-bind-html="card.businessTxt"></div></tab>
+					<tab heading="legal"><div ng-bind-html="card.legalTxt"></div></tab>
+					<tab heading="technical"><div ng-bind-html="card.technicalTxt"></div></tab>
+					
+				</tabset>
 				<br> Provides:
 				<p>
 					<span ng-repeat="tag in card.providesTags"> <span class="label label-warning">{{tag.name}}</span>
@@ -42,9 +40,8 @@
 				<div class="dependency" ng-repeat="dependency in card.dependencies">
 					<div class="panel panel-default">
 						<div class="panel-body">
-						{{dependency.description}}
-						<br>
-							Required tags: 
+						<div ng-bind-html="dependency.description"></div>
+						<br> 
 							<span ng-repeat="tag in dependency.tags">
 								<span class="label label-warning">{{tag.name}}</span>
 							</span>
