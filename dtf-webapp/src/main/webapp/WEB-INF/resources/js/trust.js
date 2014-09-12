@@ -47,7 +47,7 @@ angular.module('customControl', ['ngSanitize']).
           if ( attrs.stripBr && html == '<br>' ) {
             html = '';
           }
-          ngModel.$setViewValue(html);
+          //ngModel.$setViewValue(html);
         }
       }
     };
@@ -74,26 +74,6 @@ trustFrameworkApp.factory('trustServices', function() {
 			}
 			return candidates;
 		},
-
-		selectTxt : {
-			businessTxt : function(card) {
-				card.businessSelected = true;
-				card.legalSelected = false;
-				card.technicalSelected = false;
-			},
-
-			legalTxt : function(card) {
-				card.legalSelected = true;
-				card.technicalSelected = false;
-				card.businessSelected = false;
-			},
-
-			technicalTxt : function(card) {
-				card.technicalSelected = true;
-				card.legalSelected = false;
-				card.businessSelected = false;
-			}
-		}
 	}
 });
 
@@ -115,12 +95,14 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 				$scope.error = data;
 			});
 			
-			$scope.selectTxt = trustServices.selectTxt;
-			
 			$scope.removeProvidesTag = function(index) {
 
 				$scope.card.providesTags.splice(index, 1);
 			};
+			
+			$scope.addNewDependency = function() {
+				$scope.card.dependencies.push({"id":0,"description":"description placeholder","tags":[]});
+			}
 			
 			$scope.removeDependency = function(index) {
 				$scope.card.dependencies.splice(index, 1);
@@ -174,8 +156,6 @@ trustControllers.controller('newCardCtrl', ['$scope', 'trustServices', '$http',
 				})
 			};
 			
-			$scope.selectTxt = trustServices.selectTxt;
-			
 			$scope.removeProvidesTag = function(index) {
 
 				$scope.card.providesTags.splice(index, 1);
@@ -210,8 +190,6 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 			$scope.getCandidateCards = function(dependency) {
 				return trustServices.getCandidateCards($scope.cards, dependency);
 			};
-
-			$scope.selectTxt = trustServices.selectTxt;
 
 			$scope.postInstance = function() {
 				$http({

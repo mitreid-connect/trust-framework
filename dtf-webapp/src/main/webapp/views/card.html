@@ -48,7 +48,7 @@
 				<span class="glyphicon glyphicon-remove"></span>
 				Remove
 			</span>
-			<div contenteditable strip-br="true">{{dependency.description}} </div>
+			<div><input class="dependencyDescription" ng-model="dependency.description" size=60></div>
 
 			<br> 
 				<span ng-repeat="tag in dependency.tags"> <span class="label label-warning">{{tag.name}}<span
@@ -62,7 +62,7 @@
 				</ul>
 			</div>
 		</div>
-		<button type="button" class="btn btn-sm">Add a dependency</button> <!-- NYI -->
+		<button type="button" class="btn btn-sm" ng-click="addNewDependency()">Add a dependency</button>
 
 	</div>
 </div>
