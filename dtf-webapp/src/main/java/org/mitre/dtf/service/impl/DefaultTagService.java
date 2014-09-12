@@ -29,4 +29,9 @@ public class DefaultTagService implements TagService {
 		return tagRepository.getAll();
 	}
 
+	@Override
+	public Tag save(Tag tag) {
+		return tagRepository.save(tag);
+	}
+
 }

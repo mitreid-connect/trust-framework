@@ -8,6 +8,7 @@ import java.util.Set;
 import org.mitre.dtf.model.Tag;
 import org.mitre.dtf.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,5 +28,12 @@ public class TagController {
 	public @ResponseBody Set<Tag> getAll() {
 		
 		return tagService.getAll();
+	}
+	
+	@RequestMapping(value = "/tag/new", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody Tag addNewTag(@RequestBody String tagName) {
+		Tag tag = new Tag();
+		tag.setName(tagName);
+		return tagService.save(tag);
 	}
 }

@@ -13,5 +13,5 @@ import org.mitre.dtf.model.Tag;
  */
 public interface TagService {
 	public Set<Tag> getAll();
-	
+	public Tag save(Tag tag);
 }

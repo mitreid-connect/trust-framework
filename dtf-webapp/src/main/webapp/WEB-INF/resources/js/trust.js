@@ -95,6 +95,19 @@ trustControllers.controller('cardCtrl', [ '$scope', 'trustServices', '$http', '$
 				$scope.error = data;
 			});
 			
+			$scope.addNewTag = function() {
+				$http({
+					url : './tag/new',
+					method : 'POST',
+					data : $scope.newTag,
+					headers : {
+						'Content-Type' : 'application/json'
+					}
+				}).success(function(data) {
+					$scope.newTag = data.name;
+				})
+			};
+			
 			$scope.removeProvidesTag = function(index) {
 
 				$scope.card.providesTags.splice(index, 1);
@@ -143,6 +156,19 @@ trustControllers.controller('newCardCtrl', ['$scope', 'trustServices', '$http',
 				$scope.error = data;
 			});
 			
+			$scope.addNewTag = function() {
+				$http({
+					url : './tag/new',
+					method : 'POST',
+					data : $scope.newTag,
+					headers : {
+						'Content-Type' : 'application/json'
+					}
+				}).success(function(data) {
+					$scope.newTag = data;
+				})
+			};
+			
 			$scope.saveNewCard = function() {
 				$http({
 					url : './card/new',
@@ -179,9 +205,7 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 
 			$http.get('./card').success(function(data) {
 				$scope.cards = data;
-				$scope.instanceCards.push(data[0]); // TODO make this
-				// intelligently choose root
-				// cards
+				$scope.instanceCards.push(data[0]); // TODO make this intelligently choose root cards
 				$scope.addJsonInstanceCard(data[0], "");
 			}).error(function(data) {
 				$scope.error = data;
