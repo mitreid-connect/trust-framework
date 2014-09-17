@@ -12,8 +12,4 @@ Provide: Reserved
 
 Depends: Policy Authority
 
-Source:
-
-https://github.com/mitreid-connect/trust-framework/blob/master/TrustFramework.md#23-liability-warranties-and-indemnification
-
-https://github.com/mitreid-connect/trust-framework/blob/9e4d41554d151ed2679c736008b606c34e982569/TrustFramework.md
+Source: https://github.com/mitreid-connect/trust-framework/blob/9e4d41554d151ed2679c736008b606c34e982569/TrustFramework.md#23-liability-warranties-and-indemnification
