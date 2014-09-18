@@ -12,16 +12,16 @@
 
 <div class="panel-info">
 	<div class="panel-heading">
-		<div class="panel-title" contenteditable strip-br="true" ng-model="card.title">{{card.title}}</div>
+		<div class="panel-title"><input ng-model="card.title" size=60></div>
 
 
 	</div>
 	<div class="panel-body">
 
 		<tabset>
-			<tab heading="business"><div contenteditable strip-br="true" ng-model="card.businessTxt">{{card.businessTxt}}</div></tab>
-			<tab heading="legal"><div contenteditable strip-br="true" ng-model="card.legalTxt">{{card.legalTxt}}</div></tab>
-			<tab heading="technical"><div contenteditable strip-br="true" ng-model="card.technicalTxt">{{card.technicalTxt}}</div></tab>
+			<tab heading="business"><div><input ng-model="card.businessTxt" size=60></div></tab>
+			<tab heading="legal"><div><input ng-model="card.legalTxt" size=60></div></tab>
+			<tab heading="technical"><div><input ng-model="card.technicalTxt" size=60></div></tab>
 			
 		</tabset>
 		<br> Provides:
