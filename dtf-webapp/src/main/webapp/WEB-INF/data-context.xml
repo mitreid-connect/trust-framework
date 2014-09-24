@@ -28,16 +28,10 @@
 		<property name="password" value="dtf" />	
 	</bean>
 	
-	<!-- Use the following to set up the OIC tables in the in-memory DB
+	<!-- Use the following to set up the tables in the in-memory DB
 		   If you are using a file based HSQLDB you should not run this every time. -->
 	<jdbc:initialize-database data-source="dataSource">
 		<jdbc:script location="classpath:/db/tables/hsql_database_tables.sql"/>
-		<!-- The following files are for safely bootstrapping users and clients into the database -->
-		<jdbc:script location="classpath:/db/Card.sql"/>
-		<jdbc:script location="classpath:/db/Dependency.sql"/>
-		<jdbc:script location="classpath:/db/Tag.sql"/>
-		<jdbc:script location="classpath:/db/DependencyTags.sql"/>
-		<jdbc:script location="classpath:/db/Provides.sql"/>
 	</jdbc:initialize-database>
 	
 	<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
