@@ -1,5 +1,6 @@
 package org.mitre.dtf.web;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
@@ -7,6 +8,7 @@ import org.mitre.dtf.model.Card;
 import org.mitre.dtf.model.InstanceCard;
 import org.mitre.dtf.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,32 +24,38 @@ public class CardController {
 	CardService cardService;
 	
 	@RequestMapping(value = "/card", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Set<Card> getAll() {
+	@PreAuthorize("hasRole('ROLE_USER')")
+	public @ResponseBody Set<Card> getAll(Principal p) {
 		
 		return cardService.getAllCards();
 	}
 	
 	@RequestMapping(value = "/card/{id}", method = RequestMethod.GET, produces = "application/json")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public @ResponseBody Card getCard(@PathVariable("id") long id) {
 		return cardService.getById(id);
 	}
 	
 	@RequestMapping(value = "/card/{id}", method = RequestMethod.PUT, consumes = "application/json")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public @ResponseBody Card updateCard(@RequestBody Card card) {
 		return cardService.save(card);
 	}
 	
 	@RequestMapping(value = "/card/new", method = RequestMethod.GET, produces = "application/json")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public @ResponseBody Card newCard() {
 		return cardService.getNewCard();
 	}
 	
 	@RequestMapping(value = "/card/new", method = RequestMethod.POST, consumes = "application/json")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public @ResponseBody Card newCard(@RequestBody Card card) {
 		return cardService.save(card);
 	}
 	
 	@RequestMapping(value = "/instance", method = RequestMethod.POST, consumes = "application/json")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public @ResponseBody List<InstanceCard> saveInstance(@RequestBody List<InstanceCard> instanceCards) {
 		
 		cardService.saveInstance(instanceCards);

@@ -2,19 +2,22 @@ var trustFrameworkApp = angular.module('trustFrameworkApp', [ 'ngRoute', 'custom
 
 trustFrameworkApp.config(function($routeProvider) {
 	$routeProvider.when('/instance-builder', {
-		templateUrl : "views/instance-builder.html",
+		templateUrl : "templates/instance-builder.html",
 		controller : "instanceCtrl"
+	}).when('/login', {
+		templateUrl : "templates/login.jsp",
+		controller : "loginCtrl"
 	}).when('/card', {
-		templateUrl : "views/all-cards.html",
+		templateUrl : "templates/all-cards.html",
 		controller : "instanceCtrl"
 	}).when('/card/:cardId', {
-		templateUrl : 'views/card.html',
+		templateUrl : 'templates/card.html',
 		controller : "cardCtrl"
 	}).when('/card/new', {
-		templateUrl : 'views/new-card.html',
+		templateUrl : 'templates/new-card.html',
 		controller : "newCardCtrl"
 	}).otherwise({
-		template : 'Nothing to see here. Choose from the links above.'
+		template : 'Nothing to see here. Login or choose from one of the links.'
 	})
 });
 
@@ -256,6 +259,17 @@ trustControllers.controller('instanceCtrl', [ '$scope', 'trustServices', '$http'
 			};
 
 		} ]);
+
+trustControllers.controller('loginCtrl', [ '$scope',
+                                      		function($scope) {
+	$scope.setLocalhost = function() {
+		$scope.identifier = 'http://localhost:8080/openid-connect-server-webapp/';
+	}
+	
+	$scope.setMitreidOrg = function() {
+		$scope.identifier = 'user@mitreid.org';
+	}
+}]);
 
 // returns index of a tag in an array of tag objects, or -1 if not found
 function tagIndexOf(tags, searchTag) {
