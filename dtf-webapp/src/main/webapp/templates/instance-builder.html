@@ -59,7 +59,7 @@
 							<li class="candidateCard"
 								ng-repeat="candidate in getCandidateCards(dependency)"
 								ng-click="instanceCards.push(candidate); addJsonInstanceCard(candidate, card); dependency.chosenCard=candidate">
-								{{candidate.title}}</li>
+								<span class="glyphicon glyphicon-list-alt"></span>  {{candidate.title}}</li>
 						</ul>
 					</div>
 				</div>
