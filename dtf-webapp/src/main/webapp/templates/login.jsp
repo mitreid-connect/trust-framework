@@ -37,7 +37,7 @@
 					<div class="span8">
 						<form action="openid_connect_login" method="get">
 							<input type="text" class="input-xxlarge" name="identifier"
-								id="identifier" ng-model="identifier"/> <input type="submit" value="Log In" />
+								id="identifier" ng-model="identifier" size=60/> <input type="submit" value="Log In" />
 						</form>
 					</div>
 
