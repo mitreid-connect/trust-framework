@@ -41,6 +41,8 @@
 							Builder</a></span> <br> <span><a href="#/card">View all
 							cards</a></span> <br> <span><a href="#/card/new">Create new
 							card</a></span>
+							<br>
+							<span><a href="j_spring_security_logout">Logout</a></span>
 				</div>
 				
 			</security:authorize>
