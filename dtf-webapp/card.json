@@ -1,0 +1,356 @@
+[
+  {
+    "id":1,
+    "title":"Trust Framework Rules Envelope",
+    "businessTxt":"This card indicates the \"party\" and the location of the \"Trust Framework System Rules\". In theory any cards could be created in any order, but as a matter of conceptual and policy coherence, this card reflects an initialization steps providing a legal and business basis upon which selection, configuration and publishing the the other cards and corresponding rules, systems, services and transactions. Based on: https://github.com/mitreid-connect/trust-framework/blob/master/TrustFramework.md",
+    "legalTxt":"These rules apply to the issuance, use, acceptance of or reliance on Derived Federated Credentials within the MITRE External Identity Federation.  Neither this Trust Framework, nor any course between the Parties hereunder, shall constitute or create a partnership, joint venture, principal-agent relationship or employer-employee relationship between the Parties.",
+    "technicalTxt":"The following use cases are supported under this Trust Framework: [TBD]  [Commentary: For so long as MITREid is an early-stage research prototype, it is premature to focus on detailed documentation of supported use cases. However, this draft Trust Framework anticipates a future state at which external and internal parties will seek to implement and interoperate with MITRE External Identity Federation services and the important role of this document to facilitate and regulate adoption. To that end, the types of technical use cases that would be relevant and constructive to detail in the future are noted below.      MITREid User Logs Into Grey Listed Relying Party     MITREid User Logs Into White Listed Relying Party     MITREid User Logs Into Black Listed Relying Party     Non-MITRE User Logs Into MITRE External Identity Federation Enabled Site     Non-MITRE CAC User Logs Into MITRE External Identity Federation Enabled Site     MITRE Relying Party Site Implements MITRE External Identity Federation Access     Non-MITRE Identity Provider Added to MITRE External Identity Federation White List     Non-MITRE Relying Party Site Accepts MITREid User Login]",
+    "dependencies":[
+      {
+        "id":10,
+        "description":"Scope",
+        "tags":[
+          {
+            "id":13,
+            "name":"Scope"
+          }
+        ]
+      },
+      {
+        "id":11,
+        "description":"Liability",
+        "tags":[
+          {
+            "id":9,
+            "name":"Liability"
+          }
+        ]
+      },
+      {
+        "id":12,
+        "description":"Roles",
+        "tags":[
+          {
+            "id":12,
+            "name":"Roles"
+          }
+        ]
+      },
+      {
+        "id":14,
+        "description":"Certification",
+        "tags":[
+          {
+            "id":10,
+            "name":"Certification"
+          }
+        ]
+      },
+      {
+        "id":17,
+        "description":"White List",
+        "tags":[
+          {
+            "id":16,
+            "name":"WhiteList"
+          }
+        ]
+      },
+      {
+        "id":18,
+        "description":"Grey List",
+        "tags":[
+          {
+            "id":18,
+            "name":"GreyList"
+          }
+        ]
+      },
+      {
+        "id":19,
+        "description":"Black List",
+        "tags":[
+          {
+            "id":17,
+            "name":"BlackList"
+          }
+        ]
+      },
+      {
+        "id":20,
+        "description":"Service Level Agreement",
+        "tags":[
+          {
+            "id":19,
+            "name":"SLA"
+          }
+        ]
+      },
+      {
+        "id":21,
+        "description":"Record Keeping and Reporting",
+        "tags":[
+          {
+            "id":21,
+            "name":"Audit"
+          },
+          {
+            "id":20,
+            "name":"Logging"
+          }
+        ]
+      }
+    ],
+    "providesTags":[
+      {
+        "id":8,
+        "name":"IdentityTrustFramework"
+      }
+    ]
+  },
+  {
+    "id":2,
+    "title":"Scope",
+    "businessTxt":"This Trust Framework applies to the use by MITRE personnel of OpenID 2.0 and OpenID Connect, collectively called MITREid. This Trust Framework also applies to all non-MITRE users who connect to MITRE systems using the MITRE External Identity Federation.",
+    "legalTxt":"The authoritative current version of the Trust Framework System Rules can be found at www.mitre.org/trustframework [note actual URL to be determined]. These Rules, including all documents explicitly Incorporated by Reference, provide standard default terms for use of the External Identity Federation, but in the event of a conflict between the terms of an existing contract between parties governing the terms of access to relevant applications or services, then the terms of the existing contract shall govern.  When the text of these Rules explicitly refers to a \\u201cdocument Incorporated by Reference\\u201d and includes a URL to the authoritative version of that document, then the content of that document shall have the same force and effect as if directly published within these Rules.",
+    "technicalTxt":"reserved.",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":13,
+        "name":"Scope"
+      }
+    ]
+  },
+  {
+    "id":3,
+    "title":"Roles",
+    "businessTxt":"The following Roles exist within this system.",
+    "legalTxt":"The following Roles exist within this system.",
+    "technicalTxt":"The following Roles exist within this system.",
+    "dependencies":[
+      {
+        "id":5,
+        "description":"Policy Authority",
+        "tags":[
+          {
+            "id":1,
+            "name":"PolicyAuthorityParty"
+          }
+        ]
+      },
+      {
+        "id":6,
+        "description":"Relying Party",
+        "tags":[
+          {
+            "id":6,
+            "name":"RelyingParty"
+          }
+        ]
+      },
+      {
+        "id":15,
+        "description":"Identity Provider",
+        "tags":[
+          {
+            "id":14,
+            "name":"IdentityProvider"
+          }
+        ]
+      },
+      {
+        "id":16,
+        "description":"User Authority",
+        "tags":[
+          {
+            "id":15,
+            "name":"UserAuthority"
+          }
+        ]
+      }
+    ],
+    "providesTags":[
+      {
+        "id":12,
+        "name":"Roles"
+      }
+    ]
+  },
+  {
+    "id":4,
+    "title":"id.mitre.org",
+    "businessTxt":"MITREid Connect is an implementation of OpenID Connect for use by MITRE employees. This service is available to all current MITRE employees on any site that supports the OpenID Connect protocol.",
+    "legalTxt":"reserved",
+    "technicalTxt":"This OpenID Connect service is built from the MITREid Connect Open Source project started by The MITRE Corporation. This is a research prototype system with best-effort availability.  This service aims to be a generally-applicable reference implementation of OpenID Connect and OAuth 2 and provides a range of useful features such as signed tokens and token introspection. This server also supports Dynamic Client Registration for the standard OpenID Connect scopes of openid , address , email , profile , phone , and offline_access . Other scopes and features are available by registering a client through a systems administrator.  More information about the project can be found on the MTIREid Connect page on GitHub. There, you can submit bug reports, give feedback, or even contribute code patches for additional features you'd like to see. For server configuration details, go to: https://id.mitre.org/connect/.well-known/openid-configuration",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":2,
+        "name":"SystemEndpoint"
+      },
+      {
+        "id":14,
+        "name":"IdentityProvider"
+      }
+    ]
+  },
+  {
+    "id":5,
+    "title":"oidc.mit.edu",
+    "businessTxt":"MIT, This OpenID Connect service is built from the MITREid Connect Open Source project, from The MITRE Corporation and the MIT Kerberos and Internet Trust Consortium.",
+    "legalTxt":"Massachusetts Institute of Technology, a not-for-profit corporation located at 77 Massachusetts Ave.",
+    "technicalTxt":"oidc.mit.edu, This OpenID Connect service is built from the MITREid Connect Open Source project, from The MITRE Corporation and the MIT Kerberos and Internet Trust Consortium. For server configuration details, go to: https://oidc.mit.edu/.well-known/openid-configuration",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":2,
+        "name":"SystemEndpoint"
+      },
+      {
+        "id":14,
+        "name":"IdentityProvider"
+      }
+    ]
+  },
+  {
+    "id":6,
+    "title":"No Service Level Guarantee",
+    "businessTxt":"Reasonable efforts are made to maintain service, however you may notice occasional outages or disruptions as MITREid is being continuously refined. Under this Trust Framework, support of MITRE External Identity Federation services as Identity Provider and/or Relying Party and/or otherwise may be modified or discontinued at any time and with no notice.",
+    "legalTxt":"Reasonable efforts are made to maintain service, however you may notice occasional outages or disruptions as MITREid is being continuously refined. Under this Trust Framework, support of MITRE External Identity Federation services as Identity Provider and/or Relying Party and/or otherwise may be modified or discontinued at any time and with no notice.",
+    "technicalTxt":"reserved",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":19,
+        "name":"SLA"
+      }
+    ]
+  },
+  {
+    "id":7,
+    "title":"Record Keeping & Logging",
+    "businessTxt":"See legal and technical descriptions.",
+    "legalTxt":"The required log files for Identity Providers and White Listed Relying Parties under Section 3.6 of this Trust Framework must be protected and maintained in accordance with reasonable commercial practices or as specified in any applicable certification or agreement. Such log files must be made available to MITRE upon request when reasonably necessary to ensure MITRE External Identity Federation system integrity or for purposes of troubleshooting MITRE system issues.",
+    "technicalTxt":"3.6.1. Identity Provider Event Logging  An Identity Provider MUST log the following events:      User approves a site     User logs in to an Identity Provider     User uses an Identity Provider to log into a Relying Party     User denies log in to a Relying Party     User revokes access to a Relying Party  3.6.2. The System Operator shall maintain records of the Identity Provider log files related to MITRE Users and required under Section 3.6.1 in accordance with MITRE Records Management Procedure IM 4.3.1.1. 3.6.3. White Listed Relying Party Event Logging  A White Listed Relying Party MUST log the following events:      User selects an Identity Provider to login to a Relying Party     User uses an Identity Provider to login to a Relying Party     User denies the authentication transaction",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":21,
+        "name":"Audit"
+      },
+      {
+        "id":20,
+        "name":"Logging"
+      }
+    ]
+  },
+  {
+    "id":8,
+    "title":"Liability",
+    "businessTxt":"Reserved",
+    "legalTxt":"THE MITRE CORPORATION MAKES NO WARRANTY, EXPRESS OR IMPLIED, AS TO THE ACCURACY, CAPABILITY, EFFICIENCY, MERCHANTABILITY, OR FUNCTIONALITY OF MITREid OR MITRE EXTERNAL IDENTITY FEDERATION OR ANY INFORMATION OR SERVICES COMPRISING OR RELATED TO MITREid OR MITRE EXTERNAL IDENTITY FEDERATION. IN NO EVENT WILL THE MITRE CORPORATION BE LIABLE FOR ANY GENERAL, CONSEQUENTIAL, INDIRECT, INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES, EVEN IF MITRE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+    "technicalTxt":"Reserved",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":9,
+        "name":"Liability"
+      }
+    ]
+  },
+  {
+    "id":9,
+    "title":"The MITRE External Identity Federation Certification Policy",
+    "businessTxt":"Certification is a material consideration favoring the System Operator decision on inclusion of parties to a White List, but is neither required nor sufficient.",
+    "legalTxt":"Reserved for legal text.",
+    "technicalTxt":"White Listed Identity Providers have their Trust Root for OpenID 2.0 or Issuer for OpenID Connect reflected in the Relying Party.",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":10,
+        "name":"Certification"
+      }
+    ]
+  },
+  {
+    "id":10,
+    "title":"Grey List Policy",
+    "businessTxt":"Grey Listed sites include any Identity Provider or Relying Party that implements the standards in Section 3 and that has not been added to a White List or Black List by the System Operator. Any Grey Listed Relying Party may accept a Derived Federated Credential from any User and any User may use a Derived Federated Credential to access the site of any Grey Listed Relying Party.  If an Identity Provider is Grey Listed, then the Relying Party makes the decision on a per use or other basis whether to accept and rely upon credentials issued by that Identity Provider. If a Relying Party is on a Grey List then the User makes the decision whether to authorize the use of their Derived Federated Credential to access the Relying Party site.",
+    "legalTxt":"legal text placeholder",
+    "technicalTxt":"No additional configuration is required for any Grey List site or service.",
+    "dependencies":[
+
+    ],
+    "providesTags":[
+      {
+        "id":18,
+        "name":"GreyList"
+      }
+    ]
+  },
+  {
+    "id":11,
+    "title":"White List Policy",
+    "businessTxt":"The System Operator, by approval of or delegated authority by the Policy Authority, may add a Relying Party site to the MITREid White List, thereby allowing automated authorization for MITRE Users.",
+    "legalTxt":"reserved",
+    "technicalTxt":"3.3.2. White Listed Identity Providers  White Listed Identity Providers have their Trust Root for OpenID 2.0 or Issuer for OpenID Connect reflected in the Relying Party. 3.3.3. White Listed Relying Parties  White Listed Relying Parties have their Trust Root for OpenID 2.0 and/or their Client ID for OpenID Connect configured in the Relying Party system.",
+    "dependencies":[
+      {
+        "id":22,
+        "description":"Administrator of the white list",
+        "tags":[
+          {
+            "id":5,
+            "name":"SystemOperator"
+          }
+        ]
+      }
+    ],
+    "providesTags":[
+      {
+        "id":16,
+        "name":"WhiteList"
+      }
+    ]
+  },
+  {
+    "id":12,
+    "title":"Black List Policy",
+    "businessTxt":"The System Operator may determine whether a site is in violation of these rules or otherwise disapproved for federation, and upon such determination may add that site to the MITREid Black List, thereby preventing a MITRE User from using their Derived Federated Credential to access such site and preventing Derived Federated Credentials from Black Listed Identity Providers from being used to access MITRE Relying Party sites under this Trust Framework.",
+    "legalTxt":"reserved",
+    "technicalTxt":"3.3.4. Black Listed Identity Providers  Black Listed Identity Providers have their Trust Root for OpenID 2.0 or Issuer for OpenID Connect configured to be denied in Relying Party system. 3.3.5. Black Listed Relying Parties  Black Listed Relying Party\\u2019s have their Trust Root for OpenID 2.0 and their redirect URI for OpenID Connect configured to be denied in the Relying Party system.",
+    "dependencies":[
+      {
+        "id":24,
+        "description":"Administrator of the black list",
+        "tags":[
+          {
+            "id":5,
+            "name":"SystemOperator"
+          }
+        ]
+      }
+    ],
+    "providesTags":[
+      {
+        "id":17,
+        "name":"BlackList"
+      }
+    ]
+  }
+]
